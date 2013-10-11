@@ -1,43 +1,45 @@
 package com.sampleshooter;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL10;
+import com.sampleshooter.GameScreen;
 
 class Game implements ApplicationListener {
 
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
-
+		// Create everything
+		//Art.load();
+		//Sound.Load();
+		running = true;
+		//setScreen(new GameScreen());
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
+		// !!!
 	}
 
 	@Override
 	public void render() {
-		// TODO Auto-generated method stub
-
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-
+		running = false;
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-
+		running = true;
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		// !!!
 	}
 
+	private boolean running = false;
 }
