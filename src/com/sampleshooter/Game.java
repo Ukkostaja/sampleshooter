@@ -7,14 +7,31 @@ import com.sampleshooter.Screen;
 import com.sampleshooter.GameScreen;
 
 class Game implements ApplicationListener {
+	public static final int GAME_HEIGHT = 240;
+	public static final int GAME_WIDTH = 320;
 
+	private boolean running = false;
+	// The main Screen, this can be anything like
+	// GameScreen or MenuScreen
+	
+	long a=0;
+	private Screen screen;
+	private Input input;
+	private final boolean started = false;
+	private GameEngine gEngine;
+	
 	@Override
 	public void create() {
 		// Create everything
 		Art.load();
 		Sound.load();
+		Level.load();
 		running = true;
-		setScreen(new GameScreen());
+		GameScreen pelitila = new GameScreen();
+		setScreen(pelitila);
+		this.gEngine = new GameEngine(pelitila);
+		this.input = new Input(gEngine);
+		gEngine.start();
 	}
 
 	@Override
@@ -24,18 +41,30 @@ class Game implements ApplicationListener {
 
 	@Override
 	public void render() {
+		
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		screen.render();
+		//System.out.println(a++ +" ");
+		try {
+			gEngine.tick();
+		} catch (InterruptedException e) {
+			System.out.println("Sitä on nyt jo myöhäistä surra");
+			e.printStackTrace();
+		}
+		
+		
+
 	}
 
 	@Override
 	public void pause() {
 		running = false;
+		gEngine.stop();
 	}
 
 	@Override
 	public void resume() {
 		running = true;
+		gEngine.resume();
 	}
 
 	@Override
@@ -58,12 +87,8 @@ class Game implements ApplicationListener {
 			screen.init(this);
 	}
 
-	public static final int GAME_HEIGHT = 240;
-	public static final int GAME_WIDTH = 320;
+
 	
-	private boolean running = false;
-	
-	// The main Screen, this can be anything like
-	// GameScreen or MenuScreen
-	private Screen screen;
+
+
 }
