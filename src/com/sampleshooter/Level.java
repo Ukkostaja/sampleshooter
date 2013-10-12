@@ -84,10 +84,6 @@ public class Level {
 		return 60.0f / getTempo() * 1000.0f; 
 	}
 	
-	public int getTempoNumber() {
-		
-	}
-	
 	/**
 	 * This parses the level textfile
 	 * @param name	Level filepath
@@ -134,9 +130,14 @@ public class Level {
 				
 				// Check for alpha == new note
 				if(Character.isLetter(line.charAt(0))) { // new note
-					newStep.note = line.charAt(0);
+					char note = line.charAt(0);
 					line = line.substring(1).trim(); // erase note char
-					newStep.position = Integer.parseInt(line);
+					int position = Integer.parseInt(line);
+					
+					Note newnote = new Note();
+					newnote.note = note;
+					newnote.position = position;
+					newStep.notes.add(newnote);
 				}
 				else if(Character.isDigit(line.charAt(0))) { // new tempo
 					current_tempo = Integer.parseInt(line);

@@ -29,6 +29,13 @@ public class GameEngine extends Engine {
 		isRunning = true;
 	}
 	
+	public void confirmInput(int rawinput) {
+		player.setPositio(rawinput);
+		
+		if(rawinput == 0)
+			kakat.add(new Kakka(rdom.nextInt(3)-1,screen.homepoint));
+	}
+	
 	/**
 	 * Draws the screen
 	 */
@@ -124,7 +131,7 @@ public class GameEngine extends Engine {
 	private Level level;
 	private Player player = new Player();
 	private ArrayList<Kakka> kakat = new ArrayList<Kakka>();
-	private ArrayList<Pommi> pommit = new ArrayList<Pommi>();
+	public ArrayList<Pommi> pommit = new ArrayList<Pommi>();	// TODO: CHANGE TO PRIVATE!
 	private int[] notelines = new int[5];
 	
 	// Level objects
@@ -134,4 +141,6 @@ public class GameEngine extends Engine {
 	// Tempo object
 	float nextTempo = 0.0F; // time for next tempo
 	boolean tempoSignal = false;
+	
+	private Random rdom = new Random();
 }

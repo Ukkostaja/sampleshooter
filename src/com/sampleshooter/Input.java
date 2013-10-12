@@ -39,9 +39,9 @@ public class Input implements InputProcessor{
 
 		@Override
 		public boolean keyTyped(char character) {
-			if(character == 'a') {
+			/*if(character == 'a') {
 				System.out.println(gEngine.level.tempo);
-			}
+			}*/
 
 
 			if(character == 'r') {
