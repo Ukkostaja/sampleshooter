@@ -39,6 +39,12 @@ public class GameScreen extends Screen {
 
 	}
 	
+	public void drawPommit(ArrayList<Pommi> pommit) {
+		for(int i = 0;i<pommit.size();i++){
+			draw(Art.bomb[0][0],(int)pommit.get(i).sijainti.x,(int)pommit.get(i).sijainti.y);
+		}
+	}
+	
 	public void drawKakat(ArrayList<Kakka> kakat){
 		for(int i = 0;i<kakat.size();i++){
 			draw(Art.ball[0][0],(int)kakat.get(i).sijainti.x,(int)kakat.get(i).sijainti.y);

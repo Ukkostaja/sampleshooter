@@ -15,6 +15,7 @@ public class GameEngine extends Thread {
 	long eteneminen = 0;
 	int loop;
 	Game game;
+	Player pelaaja;
 	
 	ArrayList<Kakka> kakat = new ArrayList<Kakka>();
 	ArrayList<Pommi> pommit = new ArrayList<Pommi>();
@@ -27,8 +28,7 @@ public class GameEngine extends Thread {
 	
 	public GameEngine(Game game) {
 		this.game = game;
-		ship_positio =2 ;
-		ship_moving =0;
+
 		levelkakat = level.level.get(1);
 		
 		Art.load();
@@ -37,7 +37,7 @@ public class GameEngine extends Thread {
 		Gdx.input.setInputProcessor(input);
 		pelitila = new GameScreen();
 		setScreen(pelitila);
-		
+		pelaaja = new Player();
 		this.input.setEngine(this);
 		
 	}
@@ -61,18 +61,14 @@ public class GameEngine extends Thread {
 	
 	//Tarkistetaan onko ajoitus oikein ja toimitaan sen mukaan.
 	public void confirmInput(int rawinput) {
-		this.setPositio(rawinput);
+		this.pelaaja.setPositio(rawinput);
 		if(rawinput ==0){
 			kakat.add(new Kakka(rdom.nextInt(3)-1));
 		}
 		//this.ship_moving=rawinput;
 	}
 	
-	private void setPositio(int moving){
-		ship_positio+= moving;
-		if(ship_positio < 0) ship_positio=0;
-		if(ship_positio >4) ship_positio =4;
-	}
+
 
 	public void pasko(char merkki) {
 		Kakka uusi;
@@ -109,6 +105,11 @@ public class GameEngine extends Thread {
 			kakka.sijainti.x += kakka.suunta.x;
 			kakka.sijainti.y += kakka.suunta.y;
 		}
+		Pommi pommi;
+		for(int i = 0; i< pommit.size(); i++) {
+			pommi = pommit.get(i);
+			pommi.sijainti.x+=pommi.speed;
+		}
 		
 		//käsketään peliruutua piirtää kaikki relevANTIT asiat
 		
@@ -116,7 +117,7 @@ public class GameEngine extends Thread {
 		
 		pelitila.drawPelaaja(ship_positio,ship_moving);
 		pelitila.drawKakat(kakat);
-		
+		pelitila.drawPommit(pommit);
 		pelitila.endOfDraw();
 		
 		long sleeptime = (long) (ticktime-dtime);
