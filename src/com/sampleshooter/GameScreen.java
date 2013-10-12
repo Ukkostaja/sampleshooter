@@ -45,7 +45,18 @@ public class GameScreen extends Screen {
 	
 	public void drawPommit(ArrayList<Pommi> pommit) {
 		for(int i = 0;i<pommit.size();i++){
-			draw(Art.note[0][0],(int)pommit.get(i).sijainti.x,(int)pommit.get(i).sijainti.y);
+			Pommi pommi = pommit.get(i);
+			switch (pommi.tyyppi) {
+			case 0:	
+				draw(Art.note_full[0][0],(int)pommi.sijainti.x,(int)pommi.sijainti.y);
+				break;
+			case 1:
+				draw(Art.note_perus[0][0],(int)pommi.sijainti.x,(int)pommi.sijainti.y);
+			default:
+				draw(Art.ball[0][0],(int)pommi.sijainti.x,(int)pommi.sijainti.y);
+				break;
+			}
+			;
 		}
 	}
 	

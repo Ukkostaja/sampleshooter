@@ -12,8 +12,9 @@ public class Art {
 	public static TextureRegion[][] ball;
 	public static TextureRegion[][] bomb;
 	public static TextureRegion[][] line;
-	public static TextureRegion[][] note;
+	public static TextureRegion[][] note_full;
 	public static TextureRegion[][] kuula;
+	public static TextureRegion[][] note_perus;
 	
 	public static void load()
 	{
@@ -23,8 +24,10 @@ public class Art {
 		ball = split("../sampleshooter/assets/ball.png",16,16);
 		bomb = split("../sampleshooter/assets/bomb.png",16,16);
 		line = split("../sampleshooter/assets/nuottiviiva.png",4,512);
-		note = split("../sampleshooter/assets/note.png",64,64);
+		note_full = split("../sampleshooter/assets/Nuotti_koko.png",64,64);
+		note_perus= split("../sampleshooter/assets/Nuotti_perus.png",128,64);
 		kuula = split("../sampleshooter/assets/kuula.png",32,32);
+		
 	}
 	
 	private static TextureRegion[][] split (String name, int width, int height) {
