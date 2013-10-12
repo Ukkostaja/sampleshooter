@@ -10,14 +10,14 @@ public class Kakka {
 	Kakka(int vari){
 		switch (vari) {
 		case -1:
-			suunta = new Vector2(2, -1);
+			suunta = new Vector2(2, -2);
 			break;
 			
 		case 0:
 			suunta = new Vector2(2, 0);
 			break;
 		case 1:
-			suunta = new Vector2(2, 1);
+			suunta = new Vector2(2, 2);
 			break;
 
 		default:
@@ -25,5 +25,6 @@ public class Kakka {
 			break;
 		}
 		this.sijainti = new Vector2(220, 100);
+		Sound.koeaani.play();
 	}
 }
