@@ -12,7 +12,7 @@ public class Input implements InputProcessor{
 	
 	Input(GameEngine gEngine){
 	this.gEngine = gEngine;
-		gEngine.setInput(this);
+
 	}
 	
 	Input() {
@@ -49,9 +49,9 @@ public class Input implements InputProcessor{
 		@Override
 		public boolean touchDown(int screenX, int screenY, int pointer,
 				int button) {
-			if (screenY<=80) gEngine.confirmInput(-1);
-			if(screenY>80 && screenY<160) gEngine.confirmInput(0);
-			if(screenY>=160) gEngine.confirmInput(1);
+			if (screenY<=Gdx.graphics.getHeight()/3) gEngine.confirmInput(-1);
+			if(screenY>Gdx.graphics.getHeight()/3 && screenY<2*Gdx.graphics.getHeight()/3) gEngine.confirmInput(0);
+			if(screenY>=2*Gdx.graphics.getHeight()/3) gEngine.confirmInput(1);
 			// TODO Auto-generated method stub
 			return true;
 		}

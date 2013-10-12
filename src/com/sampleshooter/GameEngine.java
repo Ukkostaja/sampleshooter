@@ -14,28 +14,49 @@ public class GameEngine extends Thread {
 	String levelkakat;
 	long eteneminen = 0;
 	int loop;
+	Game game;
 	
 	ArrayList<Kakka> kakat = new ArrayList<Kakka>();
 	ArrayList<Pommi> pommit = new ArrayList<Pommi>();
 			
-	
+	private Screen screen;
 	private GameScreen pelitila;
-	private Input input;
 	
+	private final Input input = new Input();
 	static final float ticktime = 100F; //millisekuntti m‰‰r‰ johon tasap‰istet‰‰n 
 	
-	public GameEngine(GameScreen pelitila) {
-		this.pelitila = pelitila;
+	public GameEngine(Game game) {
+		this.game = game;
 		ship_positio =2 ;
 		ship_moving =0;
 		levelkakat = level.level.get(1);
+		
+		Art.load();
+		Sound.load();
+		Level.load();
+		Gdx.input.setInputProcessor(input);
+		pelitila = new GameScreen();
+		setScreen(pelitila);
+		
+		this.input.setEngine(this);
+		
+	}
+	/**
+	 * Changes the active screen which renders.
+	 * @param newScreen	new renderable screen
+	 */
+	private void setScreen(Screen newScreen)
+	{
+		if(screen != null)
+			screen.removed();
+		
+		screen = newScreen;
+		
+		if(screen != null)
+			screen.init(game);
 	}
 	
 	
-	//t‰t‰ ei ehk‰ tarvita
-	public void setInput(Input input) {
-		this.input = input;
-	}
 	
 	
 	//Tarkistetaan onko ajoitus oikein ja toimitaan sen mukaan.
