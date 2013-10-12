@@ -43,7 +43,7 @@ public class Input implements InputProcessor{
 				System.out.println(gEngine.level.tempo);
 			}
 			if(character == 'p') {
-				int handhalf = 200;
+				int handhalf = Game.GAME_HEIGHT /2;
 				System.out.println("zerg "+ handhalf +" rush!!!");
 				gEngine.pommit.add(new Pommi(50, handhalf));
 			}
@@ -54,9 +54,9 @@ public class Input implements InputProcessor{
 		@Override
 		public boolean touchDown(int screenX, int screenY, int pointer,
 				int button) {
-			if (screenY<=Gdx.graphics.getHeight()/3) gEngine.confirmInput(-1);
-			if(screenY>Gdx.graphics.getHeight()/3 && screenY<2*Gdx.graphics.getHeight()/3) gEngine.confirmInput(0);
-			if(screenY>=2*Gdx.graphics.getHeight()/3) gEngine.confirmInput(1);
+			if (screenY<=Game.GAME_HEIGHT/3) gEngine.confirmInput(-1);
+			if(screenY>Game.GAME_HEIGHT/3 && screenY<2*Game.GAME_HEIGHT/3) gEngine.confirmInput(0);
+			if(screenY>=2*Game.GAME_HEIGHT/3) gEngine.confirmInput(1);
 			// TODO Auto-generated method stub
 			return true;
 		}

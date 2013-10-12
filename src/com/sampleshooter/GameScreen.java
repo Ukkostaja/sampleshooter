@@ -11,7 +11,7 @@ import com.sampleshooter.Art;
 import com.badlogic.gdx.Gdx;
 
 public class GameScreen extends Screen {
-	int home_line = 1/4 * Game.GAME_WIDTH;
+	int home_line = 1/4 * Gdx.graphics.getWidth();
 	public final Vector2 homepoint = new Vector2(home_line,Game.GAME_HEIGHT/2);
 	
 	
@@ -34,8 +34,9 @@ public class GameScreen extends Screen {
 		spriteBatch.end();
 	}
 	
-	public void drawPelaaja(float positio,int moving){
-		draw(Art.player[0][0],200,20+(int) (40*positio));
+	public void drawPelaaja(Player pelaaja){
+		System.out.print(""+ this.home_line + " ");
+		draw(Art.player[0][0], this.home_line, Game.GAME_HEIGHT * pelaaja.ship_positio/ (pelaaja.maxpositions+2) );
 		
 
 	}
@@ -56,7 +57,7 @@ public class GameScreen extends Screen {
 	public void init(Game game) {
 		// TODO Auto-generated method stub
 		Matrix4 projection = new Matrix4();
-		projection.setToOrtho(0, game.GAME_WIDTH, game.GAME_HEIGHT, 0, -1, 1);
+		projection.setToOrtho(0, Game.GAME_WIDTH, Game.GAME_HEIGHT, 0, -1, 1);
 
 		spriteBatch = new SpriteBatch(100);
 		spriteBatch.setProjectionMatrix(projection);

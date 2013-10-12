@@ -63,7 +63,7 @@ public class GameEngine extends Thread {
 	public void confirmInput(int rawinput) {
 		this.pelaaja.setPositio(rawinput);
 		if(rawinput ==0){
-			kakat.add(new Kakka(rdom.nextInt(3)-1));
+			kakat.add(new Kakka(rdom.nextInt(3)-1,pelitila.homepoint));
 		}
 		//this.ship_moving=rawinput;
 	}
@@ -115,7 +115,7 @@ public class GameEngine extends Thread {
 		
 		pelitila.startOfDraw();
 		
-		pelitila.drawPelaaja(ship_positio,ship_moving);
+		pelitila.drawPelaaja(pelaaja);
 		pelitila.drawKakat(kakat);
 		pelitila.drawPommit(pommit);
 		pelitila.endOfDraw();
