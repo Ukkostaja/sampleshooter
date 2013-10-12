@@ -45,27 +45,27 @@ public class Input implements InputProcessor{
 			if(character == 'r') {
 				int handhalf = Game.GAME_HEIGHT /2;
 				
-				gEngine.pommit.add(new Pommi(50, gEngine.pelitila.lanes[1],0));
+				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[1],0));
 			} else
 			if(character == 't') {
 				int handhalf = Game.GAME_HEIGHT /2;
 				
-				gEngine.pommit.add(new Pommi(50, gEngine.pelitila.lanes[2],1));
+				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[2],1));
 			} else
 			if(character == 'y') {
 				int handhalf = Game.GAME_HEIGHT /2;
 				
-				gEngine.pommit.add(new Pommi(50, gEngine.pelitila.lanes[3],0));
+				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[3],0));
 			} else
 			if(character == 'u') {
 				int handhalf = Game.GAME_HEIGHT /2;
 				
-				gEngine.pommit.add(new Pommi(50, gEngine.pelitila.lanes[4],0));
+				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[4],0));
 			} else
 			if(character == 'i') {
 				int handhalf = Game.GAME_HEIGHT /2;
 				
-				gEngine.pommit.add(new Pommi(50,gEngine.pelitila.lanes[5],1));
+				gEngine.pommit.add(new Pommi(50,gEngine.screen.lanes[5],1));
 			}
 			// TODO Auto-generated method stub
 			return false;
