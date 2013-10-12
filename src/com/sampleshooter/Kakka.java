@@ -24,7 +24,7 @@ public class Kakka {
 			System.out.println("Virhe");
 			break;
 		}
-		this.sijainti = sijainti;
+		this.sijainti = new Vector2(sijainti);
 		Sound.koeaani.play();
 	}
 }

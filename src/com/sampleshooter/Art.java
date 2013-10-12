@@ -11,6 +11,7 @@ public class Art {
 	public static TextureRegion[][] player;
 	public static TextureRegion[][] ball;
 	public static TextureRegion[][] bomb;
+	public static TextureRegion[][] line;
 	
 	public static void load()
 	{
@@ -19,6 +20,7 @@ public class Art {
 		player = split("../sampleshooter/assets/player.png",32,32);
 		ball = split("../sampleshooter/assets/ball.png",16,16);
 		bomb = split("../sampleshooter/assets/bomb.png",16,16);
+		line = split("../sampleshooter/assets/nuottiviiva.png",4,512);
 	}
 	
 	private static TextureRegion[][] split (String name, int width, int height) {

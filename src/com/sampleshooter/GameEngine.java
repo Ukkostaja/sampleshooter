@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameEngine extends Thread {
 	float ship_positio; //0-5
@@ -25,6 +26,8 @@ public class GameEngine extends Thread {
 	
 	private final Input input = new Input();
 	static final float ticktime = 100F; //millisekuntti m‰‰r‰ johon tasap‰istet‰‰n 
+	int nuottiv‰li = 64;
+	int[] lines = new int[5];
 	
 	public GameEngine(Game game) {
 		this.game = game;
@@ -38,7 +41,12 @@ public class GameEngine extends Thread {
 		pelitila = new GameScreen();
 		setScreen(pelitila);
 		pelaaja = new Player();
+		int nuottialku = Game.GAME_WIDTH /6;
+		for(int i=0;i<5;i++){
+			lines[i] = nuottialku + i*nuottiv‰li;
+		}
 		this.input.setEngine(this);
+		
 		
 	}
 	/**
@@ -74,13 +82,13 @@ public class GameEngine extends Thread {
 		Kakka uusi;
 		switch (merkki) {
 		case '+':
-			uusi = new Kakka(1,pelitila.homepoint);
+			uusi = new Kakka(1,new Vector2(pelitila.homepoint));
 			break;
 		case '-':
-			uusi = new Kakka(-1,pelitila.homepoint);
+			uusi = new Kakka(-1,new Vector2(pelitila.homepoint));
 			break;
 		default:
-			uusi = new Kakka(0,pelitila.homepoint); 
+			uusi = new Kakka(0,new Vector2(pelitila.homepoint)); 
 			break;
 		}
 		kakat.add(uusi);
@@ -118,6 +126,7 @@ public class GameEngine extends Thread {
 		pelitila.drawPelaaja(pelaaja);
 		pelitila.drawKakat(kakat);
 		pelitila.drawPommit(pommit);
+		pelitila.drawLines(lines);
 		pelitila.endOfDraw();
 		
 		long sleeptime = (long) (ticktime-dtime);
