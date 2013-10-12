@@ -20,6 +20,12 @@ public class Level {
 		public int position;
 	}
 	
+	public class PatternShoot {
+		public boolean left;
+		public boolean center;
+		public boolean right;
+	}
+	
 	public class TempoStep {
 		public int pattern;	// pattern number
 		public int tempo;	// bpm
@@ -51,7 +57,15 @@ public class Level {
 	}
 	
 	public PatternShoot getPattern() {
-		// TODO
+		String str = patterns.getPattern();
+		
+		PatternShoot shoot = new PatternShoot();
+		
+		shoot.left = (str.charAt(0) != '0');
+		shoot.center = (str.charAt(1) != '0');
+		shoot.right = (str.charAt(2) != '0');
+		
+		return shoot;
 	}
 	
 	/**
@@ -114,7 +128,7 @@ public class Level {
 					newStep = new TempoStep();
 				}
 				
-				// Skip comment
+				// Skip comment line
 				if(line.charAt(0) == ';')
 					continue;
 				
@@ -144,7 +158,10 @@ public class Level {
 	}
 	
 	public void step() {
+		
+		
 		current_position++;
+		patterns.step();
 	}
 	
 	private int current_position = 0;

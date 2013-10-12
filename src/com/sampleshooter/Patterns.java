@@ -64,19 +64,15 @@ public class Patterns {
 		}
 	}
 	
-	public String fetch() {
+	public String getPattern() {
 		Pattern pat = pattern.get(current);
 		
 		// Reset counter to the beginning
-		if(step >= pat.patterns.size()) {
-			step = 0;
+		if(current_step >= pat.patterns.size()) {
+			current_step = 0;
 		}
 		
-		String patterns = pat.patterns.get(step);
-		
-		step++;
-		
-		return patterns;
+		return pat.patterns.get(current_step);
 	}
 	
 	/**
@@ -86,10 +82,14 @@ public class Patterns {
 	public void set(int num) {
 		// TODO: Check if it exists
 		current = num;
-		step = 0;
+		current_step = 0;
+	}
+	
+	public void step() {
+		current_step++;
 	}
 	
 	private int current;
-	private int step;
+	private int current_step;
 	private Map<Integer, Pattern> pattern = new HashMap<Integer, Pattern>();
 }

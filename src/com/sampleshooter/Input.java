@@ -40,12 +40,34 @@ public class Input implements InputProcessor{
 		@Override
 		public boolean keyTyped(char character) {
 			if(character == 'a') {
-				//System.out.println(gEngine.level.tempo);
+				System.out.println(gEngine.level.tempo);
 			}
-			if(character == 'p') {
+
+
+			if(character == 'r') {
 				int handhalf = Game.GAME_HEIGHT /2;
 				System.out.println("zerg "+ handhalf +" rush!!!");
-				gEngine.pommit.add(new Pommi(50, handhalf));
+				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[1]));
+			} else
+			if(character == 't') {
+				int handhalf = Game.GAME_HEIGHT /2;
+				System.out.println("zerg "+ handhalf +" rush!!!");
+				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[2]));
+			} else
+			if(character == 'y') {
+				int handhalf = Game.GAME_HEIGHT /2;
+				System.out.println("zerg "+ handhalf +" rush!!!");
+				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[3]));
+			} else
+			if(character == 'u') {
+				int handhalf = Game.GAME_HEIGHT /2;
+				System.out.println("zerg "+ handhalf +" rush!!!");
+				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[4]));
+			} else
+			if(character == 'i') {
+				int handhalf = Game.GAME_HEIGHT /2;
+				System.out.println("zerg "+ handhalf +" rush!!!");
+				gEngine.pommit.add(new Pommi(50,gEngine.screen.lanes[5]));
 			}
 			// TODO Auto-generated method stub
 			return false;

@@ -38,6 +38,7 @@ public class GameEngine extends Engine {
 		screen.drawPelaaja(player);
 		screen.drawKakat(kakat);
 		screen.drawPommit(pommit);
+		screen.drawLines(notelines);
 		//------------------------------
 		screen.endOfDraw();
 	}
@@ -104,19 +105,18 @@ public class GameEngine extends Engine {
 		}
 		
 		for (Kakka kk : kakat) {
-			kk.sijainti.x += kk.suunta.x;
-			kk.sijainti.y += kk.suunta.y;
+			kk.update();
 		}
 		
 		for (Pommi pom : pommit) {
-			pom.sijainti.x += pom.speed;
+			pom.update();
 		}
 		
 		tempoSignal = false; // Set next step as no tempo
 	}
 	
 	// Main elements
-	private GameScreen screen = new GameScreen();
+	public GameScreen screen = new GameScreen();	// TODO: CHANGE TO PRIVATE!!
 	private Input input = new Input();
 	private int level_number = 1;
 	
@@ -125,6 +125,7 @@ public class GameEngine extends Engine {
 	private Player player = new Player();
 	private ArrayList<Kakka> kakat = new ArrayList<Kakka>();
 	private ArrayList<Pommi> pommit = new ArrayList<Pommi>();
+	private int[] notelines = new int[5];
 	
 	// Level objects
 	private String levelkakat;
