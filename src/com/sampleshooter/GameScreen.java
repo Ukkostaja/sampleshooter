@@ -13,7 +13,8 @@ import com.badlogic.gdx.Gdx;
 public class GameScreen extends Screen {
 	int home_line = Game.GAME_WIDTH* 3 / 4;
 	public final Vector2 homepoint = new Vector2(home_line,Game.GAME_HEIGHT/2);
-	
+	int lineheight = Game.GAME_HEIGHT / (Player.maxpositions+1);
+	int[] lanes = new int[Player.maxpositions+2];
 	
 	@Override
 	public void render()
@@ -36,26 +37,27 @@ public class GameScreen extends Screen {
 	
 	public void drawPelaaja(Player pelaaja){
 		
-		draw(Art.player[0][0], this.home_line, Game.GAME_HEIGHT * pelaaja.ship_positio/ (pelaaja.maxpositions+2) );
+		
+		draw(Art.player[0][0], this.home_line, lanes[pelaaja.ship_positio]);
 		
 
 	}
 	
 	public void drawPommit(ArrayList<Pommi> pommit) {
 		for(int i = 0;i<pommit.size();i++){
-			draw(Art.bomb[0][0],(int)pommit.get(i).sijainti.x,(int)pommit.get(i).sijainti.y);
+			draw(Art.note[0][0],(int)pommit.get(i).sijainti.x,(int)pommit.get(i).sijainti.y);
 		}
 	}
 	
 	public void drawLines(int[] viivat) {
 		for(int i = 0; i< viivat.length;i++){
-			draw(Art.line[0][0],viivat[i],Game.GAME_HEIGHT / 6);
+			draw(Art.line[0][0],viivat[i],Game.GAME_HEIGHT / 7);
 		}
 	}
 	
 	public void drawKakat(ArrayList<Kakka> kakat){
 		for(int i = 0;i<kakat.size();i++){
-			draw(Art.ball[0][0],(int)kakat.get(i).sijainti.x,(int)kakat.get(i).sijainti.y);
+			draw(Art.kuula[0][0],(int)kakat.get(i).sijainti.x,(int)kakat.get(i).sijainti.y);
 		}
 	}
 	
@@ -67,6 +69,9 @@ public class GameScreen extends Screen {
 
 		spriteBatch = new SpriteBatch(100);
 		spriteBatch.setProjectionMatrix(projection);
+		for(int i=1;i<Player.maxpositions+2;i++) {
+			lanes[i] = lineheight*i;
+		}
 	}
 
 	@Override

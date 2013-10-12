@@ -22,12 +22,12 @@ public class GameEngine extends Thread {
 	ArrayList<Pommi> pommit = new ArrayList<Pommi>();
 			
 	private Screen screen;
-	private GameScreen pelitila;
+	public GameScreen pelitila;
 	
 	private final Input input = new Input();
 	static final float ticktime = 100F; //millisekuntti m‰‰r‰ johon tasap‰istet‰‰n 
 	int nuottiv‰li = 64;
-	int[] lines = new int[5];
+	int[] notelines = new int[5];
 	
 	public GameEngine(Game game) {
 		this.game = game;
@@ -43,7 +43,7 @@ public class GameEngine extends Thread {
 		pelaaja = new Player();
 		int nuottialku = Game.GAME_WIDTH /6;
 		for(int i=0;i<5;i++){
-			lines[i] = nuottialku + i*nuottiv‰li;
+			notelines[i] = nuottialku + i*nuottiv‰li;
 		}
 		this.input.setEngine(this);
 		
@@ -104,19 +104,18 @@ public class GameEngine extends Thread {
 			loop=0;eteneminen++;
 		}
 		if(eteneminen >= levelkakat.length()){
-			this.GracefulExit();
+			eteneminen=0;
 		}
 		//Lasketaan kaikki tapahtuneet muutokset
 		Kakka kakka;
 		for(int i = 0; i< kakat.size(); i++){
-			kakka = kakat.get(i);
-			kakka.sijainti.x += kakka.suunta.x;
-			kakka.sijainti.y += kakka.suunta.y;
+			kakat.get(i).update();
+		
 		}
 		Pommi pommi;
 		for(int i = 0; i< pommit.size(); i++) {
-			pommi = pommit.get(i);
-			pommi.sijainti.x+=pommi.speed;
+			pommit.get(i).update();;
+			
 		}
 		
 		//k‰sket‰‰n peliruutua piirt‰‰ kaikki relevANTIT asiat
@@ -126,7 +125,7 @@ public class GameEngine extends Thread {
 		pelitila.drawPelaaja(pelaaja);
 		pelitila.drawKakat(kakat);
 		pelitila.drawPommit(pommit);
-		pelitila.drawLines(lines);
+		pelitila.drawLines(notelines);
 		pelitila.endOfDraw();
 		
 		long sleeptime = (long) (ticktime-dtime);

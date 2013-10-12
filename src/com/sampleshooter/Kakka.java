@@ -27,4 +27,13 @@ public class Kakka {
 		this.sijainti = new Vector2(sijainti);
 		Sound.koeaani.play();
 	}
+	
+	void muutaSuunta(Vector2 uusiSuunta) {
+		suunta = uusiSuunta;
+	}
+	
+	public void update() {
+		this.sijainti.add(suunta);
+		
+	}
 }

@@ -1,8 +1,8 @@
 package com.sampleshooter;
 
 public class Player {
-	int ship_positio =4; //1-7
-	final int maxpositions=8;
+	int ship_positio =3; //1-7 aloituspositio  (maxpositions /2 aika hyvä arvo)
+	static final int maxpositions=6; //pelaajalla mahdollisia positioita tämä -1
 	int ship_moving_to =0;
 	
 	public void setPositio(int moving){
