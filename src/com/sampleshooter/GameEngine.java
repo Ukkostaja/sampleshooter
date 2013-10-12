@@ -22,7 +22,7 @@ public class GameEngine extends Thread {
 	private GameScreen pelitila;
 	private Input input;
 	
-	static final float ticktime = Level.tempo; //millisekuntti m‰‰r‰ johon tasap‰istet‰‰n 
+	static final float ticktime = 100F; //millisekuntti m‰‰r‰ johon tasap‰istet‰‰n 
 	
 	public GameEngine(GameScreen pelitila) {
 		this.pelitila = pelitila;
