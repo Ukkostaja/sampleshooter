@@ -10,6 +10,10 @@ public class GameEngine extends Thread {
 	float ship_positio; //0-5
 	int ship_moving; // -1,0 tai 1
 	Random rdom = new Random();
+	Level level = new Level();
+	String levelkakat;
+	long eteneminen = 0;
+	int loop;
 	
 	ArrayList<Kakka> kakat = new ArrayList<Kakka>();
 	ArrayList<Pommi> pommit = new ArrayList<Pommi>();
@@ -18,13 +22,13 @@ public class GameEngine extends Thread {
 	private GameScreen pelitila;
 	private Input input;
 	
-	static final float ticktime = 100F; //millisekuntti määrä johon tasapäistetään 
+	static final float ticktime = Level.tempo; //millisekuntti määrä johon tasapäistetään 
 	
 	public GameEngine(GameScreen pelitila) {
 		this.pelitila = pelitila;
 		ship_positio =2 ;
 		ship_moving =0;
-		
+		levelkakat = level.level.get(1);
 	}
 	
 	
@@ -49,10 +53,34 @@ public class GameEngine extends Thread {
 		if(ship_positio >4) ship_positio =4;
 	}
 
+	public void pasko(char merkki) {
+		Kakka uusi;
+		switch (merkki) {
+		case '+':
+			uusi = new Kakka(1);
+			break;
+		case '-':
+			uusi = new Kakka(-1);
+			break;
+		default:
+			uusi = new Kakka(0); 
+			break;
+		}
+		kakat.add(uusi);
+		
+	}
+	
 	public void tick() throws InterruptedException {
 		float dtime = Gdx.graphics.getDeltaTime()*1000;
 		//System.out.println(dtime);
-		
+		loop++;
+		if(loop++>=level.tempo){
+			pasko(levelkakat.charAt((int)eteneminen));
+			loop=0;eteneminen++;
+		}
+		if(eteneminen >= levelkakat.length()){
+			this.GracefulExit();
+		}
 		//Lasketaan kaikki tapahtuneet muutokset
 		Kakka kakka;
 		for(int i = 0; i< kakat.size(); i++){
@@ -75,6 +103,12 @@ public class GameEngine extends Thread {
 			//this.sleep(sleeptime);
 		}
 		
+		
+	}
+
+
+	private void GracefulExit() {
+		System.exit(0);
 		
 	}
 }

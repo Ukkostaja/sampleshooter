@@ -26,7 +26,7 @@ public class Input implements InputProcessor{
 
 		@Override
 		public boolean keyDown(int keycode) {
-			System.out.println(keycode);
+			//System.out.println(keycode);
 			// TODO Auto-generated method stub
 			return false;
 		}
@@ -39,6 +39,9 @@ public class Input implements InputProcessor{
 
 		@Override
 		public boolean keyTyped(char character) {
+			if(character == 'a') {
+				System.out.println(gEngine.level.tempo);
+			}
 			// TODO Auto-generated method stub
 			return false;
 		}

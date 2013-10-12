@@ -11,7 +11,7 @@ import com.badlogic.gdx.Gdx;
 
 public class GameScreen extends Screen {
 	
-	int loop = 0;
+	
 	
 	
 	@Override
