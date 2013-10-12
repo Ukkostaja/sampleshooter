@@ -5,7 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.sampleshooter.Screen;
 
-
+/**
+ * @author Petri Partanen
+ *
+ */
 class Game implements ApplicationListener {	
 	@Override
 	public void create() {

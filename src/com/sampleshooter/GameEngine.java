@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 
 /**
  * Main game engine
+ * @author Petri Partanen
  */
 public class GameEngine extends Engine {
 	/**
@@ -46,7 +47,7 @@ public class GameEngine extends Engine {
 	 */
 	protected void loadLevel(int lvl)
 	{
-		level = new Level("../sampleshooter/assets/level" + lvl + ".txt");
+		level = new Level("../sampleshooter/assets/", "level" + lvl + ".txt");
 		level_number = lvl;
 	}
 	
