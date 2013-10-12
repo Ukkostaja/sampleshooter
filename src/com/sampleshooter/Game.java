@@ -10,7 +10,7 @@ import com.sampleshooter.GameScreen;
 class Game implements ApplicationListener {
 	// Set screen resolution for initialization
 	public static final int GAME_WIDTH = 720; // 720 for HD
-	public static final int GAME_HEIGHT = GAME_WIDTH * (int)(16/9);
+	public static final int GAME_HEIGHT = (int)(GAME_WIDTH * 16/9);
 
 	private boolean running = false;
 	// The main Screen, this can be anything like
