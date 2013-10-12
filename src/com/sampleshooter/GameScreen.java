@@ -1,6 +1,7 @@
 package com.sampleshooter;
 
 import java.lang.invoke.SwitchPoint;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -36,6 +37,12 @@ public class GameScreen extends Screen {
 		draw(Art.player[0][0],200,20+(int) (40*positio));
 		
 
+	}
+	
+	public void drawKakat(ArrayList<Kakka> kakat){
+		for(int i = 0;i<kakat.size();i++){
+			draw(Art.ball[0][0],(int)kakat.get(i).sijainti.x,(int)kakat.get(i).sijainti.y);
+		}
 	}
 	
 	@Override

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.sampleshooter.Screen;
 import com.sampleshooter.GameScreen;
 
+
 class Game implements ApplicationListener {
 	public static final int GAME_HEIGHT = 240;
 	public static final int GAME_WIDTH = 320;
@@ -16,7 +17,7 @@ class Game implements ApplicationListener {
 	
 	long a=0;
 	private Screen screen;
-	private Input input;
+	private final Input input = new Input();
 	private final boolean started = false;
 	private GameEngine gEngine;
 	
@@ -27,10 +28,11 @@ class Game implements ApplicationListener {
 		Sound.load();
 		Level.load();
 		running = true;
+		Gdx.input.setInputProcessor(input);
 		GameScreen pelitila = new GameScreen();
 		setScreen(pelitila);
 		this.gEngine = new GameEngine(pelitila);
-		this.input = new Input(gEngine);
+		this.input.setEngine(gEngine);
 		gEngine.start();
 	}
 

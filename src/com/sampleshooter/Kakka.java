@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Kakka {
 	int vari;
 	Vector2 suunta;
+	Vector2 sijainti;
 	
 	Kakka(int vari){
 		switch (vari) {
@@ -20,7 +21,9 @@ public class Kakka {
 			break;
 
 		default:
+			System.out.println("Virhe");
 			break;
 		}
+		this.sijainti = new Vector2(220, 100);
 	}
 }

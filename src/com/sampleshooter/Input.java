@@ -14,9 +14,15 @@ public class Input implements InputProcessor{
 	this.gEngine = gEngine;
 		gEngine.setInput(this);
 	}
+	
+	Input() {
+		
+	}
 		
 	
-
+	public void setEngine(GameEngine gEngine){
+		this.gEngine = gEngine;
+	}
 
 		@Override
 		public boolean keyDown(int keycode) {
@@ -40,7 +46,6 @@ public class Input implements InputProcessor{
 		@Override
 		public boolean touchDown(int screenX, int screenY, int pointer,
 				int button) {
-			System.out.println(screenY + "Ä");
 			if (screenY<=80) gEngine.confirmInput(-1);
 			if(screenY>80 && screenY<160) gEngine.confirmInput(0);
 			if(screenY>=160) gEngine.confirmInput(1);
