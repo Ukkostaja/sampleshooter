@@ -6,24 +6,25 @@ public class Kakka {
 	int vari;
 	Vector2 suunta;
 	Vector2 sijainti;
-	
-	Kakka(int vari){
+
+	Kakka(int vari, Vector2 sijainti){
 		switch (vari) {
 		case -1:
-			suunta = new Vector2(2, -1);
+			suunta = new Vector2(2, -2);
 			break;
-			
+
 		case 0:
 			suunta = new Vector2(2, 0);
 			break;
 		case 1:
-			suunta = new Vector2(2, 1);
+			suunta = new Vector2(2, 2);
 			break;
 
 		default:
 			System.out.println("Virhe");
 			break;
 		}
-		this.sijainti = new Vector2(220, 100);
+		this.sijainti = new Vector2(sijainti);
+		Sound.koeaani.play();
 	}
 }

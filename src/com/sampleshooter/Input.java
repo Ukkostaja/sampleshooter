@@ -7,19 +7,19 @@ import com.badlogic.gdx.InputProcessor;
 
 public class Input implements InputProcessor{
 
-	
+
 	GameEngine gEngine;
-	
+
 	Input(GameEngine gEngine){
 	this.gEngine = gEngine;
-		gEngine.setInput(this);
+
 	}
-	
+
 	Input() {
-		
+
 	}
-		
-	
+
+
 	public void setEngine(GameEngine gEngine){
 		this.gEngine = gEngine;
 	}
@@ -42,6 +42,11 @@ public class Input implements InputProcessor{
 			if(character == 'a') {
 				System.out.println(gEngine.level.tempo);
 			}
+			if(character == 'p') {
+				int handhalf = Game.GAME_HEIGHT /2;
+				System.out.println("zerg "+ handhalf +" rush!!!");
+				gEngine.pommit.add(new Pommi(50, handhalf));
+			}
 			// TODO Auto-generated method stub
 			return false;
 		}
@@ -49,9 +54,9 @@ public class Input implements InputProcessor{
 		@Override
 		public boolean touchDown(int screenX, int screenY, int pointer,
 				int button) {
-			if (screenY<=80) gEngine.confirmInput(-1);
-			if(screenY>80 && screenY<160) gEngine.confirmInput(0);
-			if(screenY>=160) gEngine.confirmInput(1);
+			if (screenY<=Game.GAME_HEIGHT/3) gEngine.confirmInput(-1);
+			if(screenY>Game.GAME_HEIGHT/3 && screenY<2*Game.GAME_HEIGHT/3) gEngine.confirmInput(0);
+			if(screenY>=2*Game.GAME_HEIGHT/3) gEngine.confirmInput(1);
 			// TODO Auto-generated method stub
 			return true;
 		}
@@ -79,6 +84,5 @@ public class Input implements InputProcessor{
 			// TODO Auto-generated method stub
 			return false;
 		}
-		
-	}
 
+	}
