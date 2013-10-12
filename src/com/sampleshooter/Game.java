@@ -9,25 +9,31 @@ import com.sampleshooter.GameScreen;
 
 class Game implements ApplicationListener {
 	// Set screen resolution for initialization
-	public static final int GAME_HEIGHT = 720;
-	public static final int GAME_WIDTH = (int)(GAME_HEIGHT * 16/9); // 720 for HD
-	
+	public static final int GAME_WIDTH = 720; // 720 for HD
+	public static final int GAME_HEIGHT = (int)(GAME_WIDTH * 16/9);
 
 	private boolean running = false;
 	// The main Screen, this can be anything like
 	// GameScreen or MenuScreen
 	
 	long a=0;
-
-
+	private Screen screen;
+	private final Input input = new Input();
 	private final boolean started = false;
 	private GameEngine gEngine;
 	
 	@Override
 	public void create() {
 		// Create everything
-
-		this.gEngine = new GameEngine(this);
+		Art.load();
+		Sound.load();
+		Level.load();
+		running = true;
+		Gdx.input.setInputProcessor(input);
+		GameScreen pelitila = new GameScreen();
+		setScreen(pelitila);
+		this.gEngine = new GameEngine(pelitila);
+		this.input.setEngine(gEngine);
 		gEngine.start();
 	}
 
@@ -69,7 +75,20 @@ class Game implements ApplicationListener {
 		// !!!
 	}
 	
-
+	/**
+	 * Changes the active screen which renders.
+	 * @param newScreen	new renderable screen
+	 */
+	private void setScreen(Screen newScreen)
+	{
+		if(screen != null)
+			screen.removed();
+		
+		screen = newScreen;
+		
+		if(screen != null)
+			screen.init(this);
+	}
 
 
 	
