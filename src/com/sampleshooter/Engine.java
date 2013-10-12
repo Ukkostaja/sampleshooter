@@ -33,7 +33,7 @@ public abstract class Engine {
 	 * @param width
 	 * @param height
 	 */
-	public abstract void resize(int width, int height);
+	//public abstract void resize(int width, int height);
 	
 	/**
 	 * Steps the engine for updating physics

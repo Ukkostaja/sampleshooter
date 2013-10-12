@@ -22,10 +22,11 @@ class Game implements ApplicationListener {
 		this.running = true;
 	}
 
+	
 	@Override
 	public void resize(int width, int height) {
 		// Tell engine to resize the screen
-		engine.resize(width, height);
+		//engine.resize(width, height);
 	}
 
 	@Override

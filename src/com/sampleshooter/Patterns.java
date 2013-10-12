@@ -64,8 +64,11 @@ public class Patterns {
 		}
 	}
 	
-	public String getPattern() {
+	public String getPattern() {	
 		Pattern pat = pattern.get(current);
+
+		if(pat == null)
+			return EMPTY_PATTERN;
 		
 		// Reset counter to the beginning
 		if(current_step >= pat.patterns.size()) {
@@ -92,4 +95,6 @@ public class Patterns {
 	private int current;
 	private int current_step;
 	private Map<Integer, Pattern> pattern = new HashMap<Integer, Pattern>();
+	
+	private String EMPTY_PATTERN = "000";
 }

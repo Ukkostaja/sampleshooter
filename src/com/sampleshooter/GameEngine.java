@@ -1,6 +1,5 @@
 package com.sampleshooter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,8 +24,16 @@ public class GameEngine extends Engine {
 		
 		// set input
 		Gdx.input.setInputProcessor(input);
+		input.setEngine(this);
 		
 		isRunning = true;
+		
+		// Lines
+		int nuottialku = Game.GAME_WIDTH / 6;
+		for(int i = 0; i < 5; i++) {
+			int nuottiväli;
+			notelines[i] = nuottialku + i*nuottivali;
+		}
 	}
 	
 	public void confirmInput(int rawinput) {
@@ -59,30 +66,19 @@ public class GameEngine extends Engine {
 		level_number = lvl;
 	}
 	
-	public void pasko(char merkki) {
+	public void spawn(Level.PatternShoot sho) {
 		Kakka uusi;
-		switch (merkki) {
-		case '+':
-			uusi = new Kakka(1,screen.homepoint);
-			break;
-		case '-':
-			uusi = new Kakka(-1,screen.homepoint);
-			break;
-		default:
-			uusi = new Kakka(0,screen.homepoint); 
-			break;
-		}
-		kakat.add(uusi);
-
-	}
-	
-	
-	
-	/**
-	 * Resizes the game world
-	 */
-	public void resize(int width, int height) {
 		
+		if(sho.left)
+			uusi = new Kakka(1,screen.homepoint);
+		else if(sho.center)
+			uusi = new Kakka(1,screen.homepoint);
+		else if(sho.right)
+			uusi = new Kakka(1,screen.homepoint);
+		else
+			return;
+		
+		kakat.add(uusi);
 	}
 	
 	/**
@@ -99,15 +95,12 @@ public class GameEngine extends Engine {
 			level.step();
 		}
 		
-		// Calculate current tempo number
-		int tempoNumber = position / 4;
-		
 		// Tempo!
 		if(tempoSignal) {
-			pasko(levelkakat.charAt((int)position));
+			spawn(level.getPattern());
 			
-			// Check for game ending condition
-			if(position >= levelkakat.length())
+			// Check for a game ending condition
+			if(level.end())
 				isRunning = false;
 		}
 		
@@ -135,7 +128,6 @@ public class GameEngine extends Engine {
 	private int[] notelines = new int[5];
 	
 	// Level objects
-	private String levelkakat;
 	private int position = -1;		// current level tempo position
 	
 	// Tempo object
@@ -143,4 +135,6 @@ public class GameEngine extends Engine {
 	boolean tempoSignal = false;
 	
 	private Random rdom = new Random();
+	
+	private final int nuottivali = 64;
 }

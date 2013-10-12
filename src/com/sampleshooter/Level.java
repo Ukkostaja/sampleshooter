@@ -116,12 +116,15 @@ public class Level {
 				line = line.trim();
 				
 				// Empty line means the end of tempo step
-				if(line.isEmpty()) {
+				// Also . ends the step
+				if(line.isEmpty() || line.charAt(0) == '.') {
 					// Add this to the list
 					tempos.add(newStep);
 					
 					// Create new tempo step
 					newStep = new TempoStep();
+					
+					continue;
 				}
 				
 				// Skip comment line
@@ -158,16 +161,17 @@ public class Level {
 		}
 	}
 	
+	/**
+	 * Step the level by one
+	 */
 	public void step() {
-		
-		
 		current_position++;
 		patterns.step();
 	}
 	
 	private int current_position = 0;
 	private Patterns patterns;
-	private ArrayList<TempoStep> tempos;
+	private ArrayList<TempoStep> tempos = new ArrayList<TempoStep>();
 	
 	private final int DEFAULT_PATTERN = 1;
 	private final int DEFAULT_TEMPO = 60;
