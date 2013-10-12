@@ -18,7 +18,7 @@ public class Art {
 		// http://code.google.com/p/libgdx/wiki/FileHandling
 		player = split("../sampleshooter/assets/player.png",32,32);
 		ball = split("../sampleshooter/assets/ball.png",16,16);
-		bomb = split("../sampleshooter/assets/ball.png",16,16);
+		bomb = split("../sampleshooter/assets/bomb.png",16,16);
 	}
 	
 	private static TextureRegion[][] split (String name, int width, int height) {

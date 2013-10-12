@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
 import com.sampleshooter.Art;
 import com.badlogic.gdx.Gdx;
 
 public class GameScreen extends Screen {
-	
-	
+	int home_line = 1/4 * Game.GAME_WIDTH;
+	public final Vector2 homepoint = new Vector2(home_line,Game.GAME_HEIGHT/2);
 	
 	
 	@Override
@@ -55,7 +56,7 @@ public class GameScreen extends Screen {
 	public void init(Game game) {
 		// TODO Auto-generated method stub
 		Matrix4 projection = new Matrix4();
-		projection.setToOrtho(0, 320, 240, 0, -1, 1);
+		projection.setToOrtho(0, game.GAME_WIDTH, game.GAME_HEIGHT, 0, -1, 1);
 
 		spriteBatch = new SpriteBatch(100);
 		spriteBatch.setProjectionMatrix(projection);

@@ -7,7 +7,7 @@ public class Kakka {
 	Vector2 suunta;
 	Vector2 sijainti;
 	
-	Kakka(int vari){
+	Kakka(int vari, Vector2 sijainti){
 		switch (vari) {
 		case -1:
 			suunta = new Vector2(2, -2);

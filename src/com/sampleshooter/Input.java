@@ -43,8 +43,9 @@ public class Input implements InputProcessor{
 				System.out.println(gEngine.level.tempo);
 			}
 			if(character == 'p') {
-				System.out.println("zerg rush!!!");
-				gEngine.pommit.add(new Pommi(50,Gdx.graphics.getHeight()/2));
+				int handhalf = 200;
+				System.out.println("zerg "+ handhalf +" rush!!!");
+				gEngine.pommit.add(new Pommi(50, handhalf));
 			}
 			// TODO Auto-generated method stub
 			return false;

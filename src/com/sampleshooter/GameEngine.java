@@ -74,13 +74,13 @@ public class GameEngine extends Thread {
 		Kakka uusi;
 		switch (merkki) {
 		case '+':
-			uusi = new Kakka(1);
+			uusi = new Kakka(1,pelitila.homepoint);
 			break;
 		case '-':
-			uusi = new Kakka(-1);
+			uusi = new Kakka(-1,pelitila.homepoint);
 			break;
 		default:
-			uusi = new Kakka(0); 
+			uusi = new Kakka(0,pelitila.homepoint); 
 			break;
 		}
 		kakat.add(uusi);
