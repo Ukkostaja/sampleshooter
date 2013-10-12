@@ -15,10 +15,6 @@ public class GameEngine extends Engine {
 	 * @param lvl	Initial level to play
 	 */
 	public GameEngine(int lvl) {
-		// Load game stuff
-		Art.load();
-		Sound.load();
-		
 		// Set level number
 		loadLevel(lvl);
 		
@@ -31,7 +27,6 @@ public class GameEngine extends Engine {
 		// Lines
 		int nuottialku = Game.GAME_WIDTH / 6;
 		for(int i = 0; i < 5; i++) {
-			int nuottiväli;
 			notelines[i] = nuottialku + i*nuottivali;
 		}
 	}
@@ -55,6 +50,10 @@ public class GameEngine extends Engine {
 		screen.drawLines(notelines);
 		//------------------------------
 		screen.endOfDraw();
+	}
+	
+	public Screen getScreen() {
+		return screen;
 	}
 	
 	/**

@@ -36,7 +36,7 @@ public class GameScreen extends Screen {
 	}
 
 	public void drawPelaaja(Player pelaaja){
-
+		
 
 		draw(Art.player[0][0], this.home_line, lanes[pelaaja.ship_positio]);
 

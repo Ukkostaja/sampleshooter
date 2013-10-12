@@ -12,6 +12,10 @@ import com.sampleshooter.Screen;
 class Game implements ApplicationListener {	
 	@Override
 	public void create() {
+		// Load General game stuff
+		Art.load();
+		Sound.load();
+		
 		// Create the game engine
 		// We would create "MenuEngine" here if necessary
 		engine = new GameEngine(1);
@@ -69,6 +73,7 @@ class Game implements ApplicationListener {
 		// Get the engine's screen
 		screen = newScreen;
 		
+		// Initialize if successful
 		if(screen != null)
 			screen.init(this);
 	}
@@ -83,6 +88,9 @@ class Game implements ApplicationListener {
 	private Screen screen;
 	
 	// Sets screen resolution for initialization
-	public static final int GAME_WIDTH = 720; // 720 for HD
-	public static final int GAME_HEIGHT = (int)(GAME_WIDTH * 16/9);
+	//public static final int GAME_WIDTH = 720; // 720 for HD
+	//public static final int GAME_HEIGHT = (int)(GAME_WIDTH * 16/9);
+	
+	public static final int GAME_HEIGHT = 720;
+	public static final int GAME_WIDTH = (int)(GAME_HEIGHT * 16/9); // 720 for HD
 }

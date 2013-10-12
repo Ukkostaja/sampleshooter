@@ -16,9 +16,7 @@ public abstract class Engine {
 	 * Returns the screen on which this engine draws
 	 * @return Drawing Screen
 	 */
-	public Screen getScreen() {
-		return screen;
-	}
+	public abstract Screen getScreen();
 	
 	/**
 	 * 
@@ -51,7 +49,4 @@ public abstract class Engine {
 	
 	// Flag for if the engine has stopped or is running
 	protected boolean isRunning = false;
-	
-	// Screen on which to draw
-	private Screen screen;
 }
