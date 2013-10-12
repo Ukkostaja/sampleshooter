@@ -11,4 +11,8 @@ public class Player {
 		if(ship_positio >=maxpositions) ship_positio =maxpositions;
 	}
 	
+	public void ammu() {
+		
+	}
+	
 }
