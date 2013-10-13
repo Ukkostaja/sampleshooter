@@ -26,6 +26,10 @@ class Game implements ApplicationListener {
 		this.running = true;
 	}
 
+	
+	
+	
+	
 
 	@Override
 	public void resize(int width, int height) {

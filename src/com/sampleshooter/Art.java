@@ -15,7 +15,7 @@ public class Art {
 	public static TextureRegion[][] note_full;
 	public static TextureRegion[][] kuula;
 	public static TextureRegion[][] note_perus;
-	
+
 	public static void load()
 	{
 		// Pit‰‰ muuttaa suhteelliseksi assets directoriin androidilla. Ohje:
@@ -27,17 +27,17 @@ public class Art {
 		note_full = split("../sampleshooter/assets/Nuotti_koko.png",64,64);
 		note_perus= split("../sampleshooter/assets/Nuotti_perus.png",128,64);
 		kuula = split("../sampleshooter/assets/kuula.png",32,32);
-		
+
 	}
-	
+
 	private static TextureRegion[][] split (String name, int width, int height) {
 		return split(name, width, height, false);
 	}
-	
+
 	private static TextureRegion[][] split (String name, int width, int height, boolean flipX) {
 		Texture texture = new Texture(Gdx.files.internal(name));
 
-		
+
 		int xSlices = texture.getWidth() / width;
 		int ySlices = texture.getHeight() / height;
 		//System.out.println(xSlices+" "+ySlices);
@@ -50,5 +50,5 @@ public class Art {
 		}
 		return res;
 	}
-	
+
 }

@@ -6,13 +6,13 @@ public class Kakka {
 	int vari;
 	Vector2 suunta;
 	Vector2 sijainti;
-	
+
 	Kakka(int vari, Vector2 sijainti){
 		switch (vari) {
 		case -1:
 			suunta = new Vector2(2, -2);
 			break;
-			
+
 		case 0:
 			suunta = new Vector2(2, 0);
 			break;
@@ -27,13 +27,13 @@ public class Kakka {
 		this.sijainti = new Vector2(sijainti);
 		Sound.koeaani.play();
 	}
-	
+
 	void muutaSuunta(Vector2 uusiSuunta) {
 		suunta = uusiSuunta;
 	}
-	
+
 	public void update() {
 		this.sijainti.add(suunta);
-		
+
 	}
 }

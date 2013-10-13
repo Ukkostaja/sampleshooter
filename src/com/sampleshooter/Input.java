@@ -7,19 +7,19 @@ import com.badlogic.gdx.InputProcessor;
 
 public class Input implements InputProcessor{
 
-	
+
 	GameEngine gEngine;
-	
+
 	Input(GameEngine gEngine){
 	this.gEngine = gEngine;
 
 	}
-	
+
 	Input() {
-		
+
 	}
-		
-	
+
+
 	public void setEngine(GameEngine gEngine){
 		this.gEngine = gEngine;
 	}
@@ -39,34 +39,50 @@ public class Input implements InputProcessor{
 
 		@Override
 		public boolean keyTyped(char character) {
-		
-			
-			
+
+
+
 			if(character == 'r') {
 				int handhalf = Game.GAME_HEIGHT /2;
-				
+
 				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[1],0));
 			} else
 			if(character == 't') {
 				int handhalf = Game.GAME_HEIGHT /2;
-				
+
 				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[2],1));
 			} else
 			if(character == 'y') {
 				int handhalf = Game.GAME_HEIGHT /2;
-				
+
 				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[3],0));
 			} else
 			if(character == 'u') {
 				int handhalf = Game.GAME_HEIGHT /2;
-				
+
 				gEngine.pommit.add(new Pommi(50, gEngine.screen.lanes[4],0));
 			} else
 			if(character == 'i') {
 				int handhalf = Game.GAME_HEIGHT /2;
-				
+
 				gEngine.pommit.add(new Pommi(50,gEngine.screen.lanes[5],1));
 			}
+			
+			if (character == 'z') {
+				
+				gEngine.confirmInput(1);
+				
+			}
+			if (character == 'x') {
+				
+				gEngine.confirmInput(0);
+				
+			}
+			if (character == 'c') {
+				
+				gEngine.confirmInput(-1);
+				
+			}			
 			// TODO Auto-generated method stub
 			return false;
 		}
@@ -104,6 +120,5 @@ public class Input implements InputProcessor{
 			// TODO Auto-generated method stub
 			return false;
 		}
-		
-	}
 
+	}
