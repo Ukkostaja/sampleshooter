@@ -16,6 +16,7 @@ public class Art {
 	public static TextureRegion[][] note_full;
 	public static TextureRegion[][] kuula;
 	public static TextureRegion[][] note_perus;
+	public static TextureRegion[][] target;
 
 	public static void load()
 	{		
@@ -29,6 +30,7 @@ public class Art {
 		note_perus = split("../sampleshooter/assets/Nuotti_perus.png",128,64);
 		kuula = split("../sampleshooter/assets/kuula.png",32,32);
 		intro = load("../sampleshooter/assets/StartupScreen_crop.png",1024,512);
+		target = split("../sampleshooter/assets/ympyrasulkeutuu.png",64,64);
 	}
 	
 	public static TextureRegion load (String name, int width, int height) {

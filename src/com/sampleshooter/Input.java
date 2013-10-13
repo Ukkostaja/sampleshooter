@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
+
 public class Input implements InputProcessor{
 
 
@@ -26,8 +27,11 @@ public class Input implements InputProcessor{
 
 		@Override
 		public boolean keyDown(int keycode) {
-			//System.out.println(keycode);
+			System.out.println(keycode);
 			// TODO Auto-generated method stub
+			gEngine.checkPress(keycode);
+			
+			
 			return false;
 		}
 

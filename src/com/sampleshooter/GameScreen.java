@@ -84,6 +84,12 @@ public class GameScreen extends Screen {
 		}
 	}	
 
+	public void drawMaalit(ArrayList<TargetArea> maalit){
+		for(int i = 0; i< maalit.size();i++) {
+			draw(Art.target[0][0],(int)maalit.get(i).sijainti.x,(int)maalit.get(i).sijainti.y);
+		}
+	}
+	
 	@Override
 	public void init(Game game) {
 		// TODO Auto-generated method stub

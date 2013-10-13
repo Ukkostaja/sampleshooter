@@ -25,6 +25,11 @@ public class GameEngine extends Engine {
 		input.setEngine(this);
 		
 		isRunning = true;
+		int targetHeight = Game.GAME_HEIGHT /3;
+		int targetFix = Game.GAME_HEIGHT /7;
+		for(int i = 0;i< 3;i++) {
+			maalit.add(new TargetArea((Game.GAME_WIDTH - screen.home_line )*2 /3 + screen.home_line,targetFix+i* targetHeight));
+		}
 	}
 	
 	/**
@@ -45,10 +50,11 @@ public class GameEngine extends Engine {
 	protected void draw() {
 		screen.startOfDraw();
 		//------------------------------
+		screen.drawLines(lines.getLines());
+		screen.drawMaalit(maalit);
 		screen.drawPelaaja(player);
 		screen.drawKakat(balls);
 		screen.drawPommit(pommit);
-		screen.drawLines(lines.getLines());
 		screen.drawLuodit(luodit);
 		//------------------------------
 		screen.endOfDraw();
@@ -67,6 +73,22 @@ public class GameEngine extends Engine {
 		level_number = lvl;
 		
 		//nextTempo = level.getTempoDelay(); // TODO: ?
+	}
+
+	void checkPress(int key) {
+		switch (key) {
+		case 20: // alas
+			luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-8, 0)));
+			break;
+		case 21: //vasen
+			player.setPositio(1);
+			break;
+		case 22: //oikea
+			player.setPositio(-1);
+			break;
+		default:
+			break;
+		}
 	}
 
 	int checkCollision(Pommi pommi, ArrayList<Luoti> luodit) {
@@ -125,6 +147,8 @@ public class GameEngine extends Engine {
 			balls.add(new Kakka(-1,screen.homepoint));
 	}
 	
+	
+	
 	/**
 	 * Quick hack for note spawning
 	 */
@@ -172,6 +196,7 @@ public class GameEngine extends Engine {
 				isRunning = false;
 		}
 		
+	
 		for (Kakka kk : balls) {
 			kk.update();
 		}
@@ -208,6 +233,7 @@ public class GameEngine extends Engine {
 	private ArrayList<Kakka> balls = new ArrayList<Kakka>();
 	public ArrayList<Pommi> pommit = new ArrayList<Pommi>();	// TODO: CHANGE TO PRIVATE!
 	private ArrayList<Luoti> luodit = new ArrayList<Luoti>();
+	private ArrayList<TargetArea> maalit = new ArrayList<TargetArea>();
 	
 	// Level objects
 	private int position = -1;		// current level tempo position
