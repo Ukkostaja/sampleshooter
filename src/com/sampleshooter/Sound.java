@@ -14,9 +14,13 @@ public class Sound {
 	public static com.badlogic.gdx.audio.Sound[] chimes;
 	public static com.badlogic.gdx.audio.Sound[] chords;
 	public static com.badlogic.gdx.audio.Sound intro;
+	public static com.badlogic.gdx.audio.Sound strafe;
+	public static com.badlogic.gdx.audio.Sound shoot;
 	
 	public static void load() 
 	{
+		strafe = load("../sampleshooter/assets/Drum_strafe.wav");
+		shoot = load("../sampleshooter/assets/Drum_shoot.wav");
 		intro = load("../sampleshooter/assets/title.wav");
 		chimes = new com.badlogic.gdx.audio.Sound[nroChimes];
 		chords = new com.badlogic.gdx.audio.Sound[nroChords];

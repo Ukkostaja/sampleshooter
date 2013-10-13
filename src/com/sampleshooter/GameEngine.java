@@ -79,16 +79,19 @@ public class GameEngine extends Engine {
 		
 		case 20: // alas
 			if(maalit.get(1).check(balls)) {
+				Sound.shoot.play();
 				luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-40, 0)));
 			}
 			break;
 		case 21: //vasen
 			if(maalit.get(2).check(balls)) {
+				Sound.strafe.play();
 				player.setPositio(1);
 			}
 			break;
 		case 22: //oikea
 			if(maalit.get(0).check(balls)) {
+				Sound.strafe.play();
 				player.setPositio(-1);
 			}
 		default:
@@ -189,16 +192,13 @@ public class GameEngine extends Engine {
 		
 		// Tempo!
 		if(tempoSignal) {
-			beatAtNext = !beatAtNext;
-			
 			// Spawn under
 			spawn(level.getPattern());
 			
 			spawnNotes(level.getNotes());
 			
 			// Play sound
-			if(beatAtNext)
-				Sound.pulse.play();
+			Sound.pulse.play();
 			
 			// Check for a game ending condition
 			if(level.end())
@@ -250,8 +250,6 @@ public class GameEngine extends Engine {
 	// Tempo object
 	float nextTempo = 0.0f; // time for next tempo
 	boolean tempoSignal = false;
-	
-	boolean beatAtNext = true;
 	
 	private Random rdom = new Random();
 }
