@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.sampleshooter.Screen;
 
 /**
+<<<<<<< HEAD
  * Main Game class
  * @author Petri Partanen
  */

@@ -67,6 +67,22 @@ public class Input implements InputProcessor{
 
 				gEngine.pommit.add(new Pommi(50,gEngine.screen.lanes[5],1));
 			}
+			
+			if (character == 'z') {
+				
+				gEngine.confirmInput(1);
+				
+			}
+			if (character == 'x') {
+				
+				gEngine.confirmInput(0);
+				
+			}
+			if (character == 'c') {
+				
+				gEngine.confirmInput(-1);
+				
+			}			
 			// TODO Auto-generated method stub
 			return false;
 		}
