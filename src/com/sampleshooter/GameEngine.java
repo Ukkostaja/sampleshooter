@@ -2,6 +2,7 @@ package com.sampleshooter;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Vector;
 
 import com.badlogic.gdx.Gdx;
 
@@ -84,18 +85,20 @@ public class GameEngine extends Engine {
 	/**
 	 * Quick hack for note spawning
 	 */
-	private void spawnNote(Level.Note note) {		
+	private void spawnNotes(Vector<Level.Note> notes) {		
 		// TODO: FIX!
-		if(note.note == 'A')
-			pommit.add(new Pommi(50, screen.lanes[note.position],0));
-		else if(note.note == 'B')
-			pommit.add(new Pommi(50, screen.lanes[note.position],1));
-		else if(note.note == 'C')
-			pommit.add(new Pommi(50, screen.lanes[note.position],0));
-		else if(note.note == 'D')
-			pommit.add(new Pommi(50, screen.lanes[note.position],1));
-		else if(note.note == 'E')
-			pommit.add(new Pommi(50, screen.lanes[note.position],0));
+		for(Level.Note note : notes) {
+			if(note.note == 'A')
+				pommit.add(new Pommi(50, screen.lanes[note.position],0));
+			else if(note.note == 'B')
+				pommit.add(new Pommi(50, screen.lanes[note.position],1));
+			else if(note.note == 'C')
+				pommit.add(new Pommi(50, screen.lanes[note.position],0));
+			else if(note.note == 'D')
+				pommit.add(new Pommi(50, screen.lanes[note.position],1));
+			else if(note.note == 'E')
+				pommit.add(new Pommi(50, screen.lanes[note.position],0));
+		}
 	}
 	
 	/**
@@ -117,10 +120,7 @@ public class GameEngine extends Engine {
 			// Spawn under
 			spawn(level.getPattern());
 			
-			// Spawn notes
-			for(Level.Note note : level.getNotes()) {
-				spawnNote(note);
-			}
+			spawnNotes(level.getNotes());
 			
 			// Play sound
 			
