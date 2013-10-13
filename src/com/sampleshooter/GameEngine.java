@@ -192,13 +192,16 @@ public class GameEngine extends Engine {
 		
 		// Tempo!
 		if(tempoSignal) {
+			beatAtNext = !beatAtNext;
+			
 			// Spawn under
 			spawn(level.getPattern());
 			
 			spawnNotes(level.getNotes());
 			
 			// Play sound
-			Sound.pulse.play();
+			if(beatAtNext)
+				Sound.pulse.play();
 			
 			// Check for a game ending condition
 			if(level.end())
@@ -250,6 +253,8 @@ public class GameEngine extends Engine {
 	// Tempo object
 	float nextTempo = 0.0f; // time for next tempo
 	boolean tempoSignal = false;
+	
+	boolean beatAtNext = true;
 	
 	private Random rdom = new Random();
 }
