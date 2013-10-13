@@ -29,9 +29,9 @@ public class GameEngine extends Engine {
 		int maalix = (Game.GAME_WIDTH - screen.home_line )*2 /3 + screen.home_line;
 		
 		maalit.clear();
-		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y + (screen.homepoint.x - maalix) - 15)));
-		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y - 10)));
-		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y - (screen.homepoint.x - maalix) + 10)));
+		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y + (screen.homepoint.x - maalix) - 15),0));
+		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y - 10),1));
+		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y - (screen.homepoint.x - maalix) + 10),2));
 	}
 	
 	/**
