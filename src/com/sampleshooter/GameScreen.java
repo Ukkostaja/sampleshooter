@@ -90,7 +90,7 @@ public class GameScreen extends Screen {
 
 	public void drawMaalit(ArrayList<TargetArea> maalit){
 		for(int i = 0; i< maalit.size();i++) {
-			draw(Art.target[0][0],(int)maalit.get(i).sijainti.x,(int)maalit.get(i).sijainti.y);
+			draw(Art.target.get(i)[0][0],(int)maalit.get(i).sijainti.x,(int)maalit.get(i).sijainti.y);
 		}
 	}
 	

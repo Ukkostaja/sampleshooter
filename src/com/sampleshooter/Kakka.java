@@ -7,6 +7,7 @@ public class Kakka {
 	Vector2 suunta;
 	Vector2 sijainti;
 	int death = 0;
+	
 
 	Kakka(int vari, Vector2 sijainti){
 		switch (vari) {
