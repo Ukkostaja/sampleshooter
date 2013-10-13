@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.GL10;
 import com.sampleshooter.Screen;
 
 /**
+ * Main Game class
  * @author Petri Partanen
- *
  */
 class Game implements ApplicationListener {	
 	@Override
@@ -27,12 +27,19 @@ class Game implements ApplicationListener {
 	}
 
 	
+	/**
+	 * @param width
+	 * @param height
+	 */
 	@Override
 	public void resize(int width, int height) {
 		// Tell engine to resize the screen
 		//engine.resize(width, height);
 	}
 
+	/**
+	 * Called when game should render
+	 */
 	@Override
 	public void render() {
 		if(this.running) {
@@ -88,9 +95,6 @@ class Game implements ApplicationListener {
 	private Screen screen;
 	
 	// Sets screen resolution for initialization
-	//public static final int GAME_WIDTH = 720; // 720 for HD
-	//public static final int GAME_HEIGHT = (int)(GAME_WIDTH * 16/9);
-	
 	public static final int GAME_HEIGHT = 720;
 	public static final int GAME_WIDTH = (int)(GAME_HEIGHT * 16/9); // 720 for HD
 }

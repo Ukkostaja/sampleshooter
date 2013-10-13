@@ -49,15 +49,31 @@ public class Level {
 	}
 	
 	/**
-	 * Get current notes
+	 * Get's the tempo steps in the current level in total
 	 * @return
 	 */
+	public int getLevelLength() {
+		return tempos.size();
+	}
+	
+	/**
+	 * Get current notes
+	 * @return	Current beat notes or empty if none
+	 */
 	public Vector<Note> getNotes() {
+		if(end())
+			return new Vector<Note>();
+		
 		return tempos.get(current_position).notes;
 	}
 	
+	/**
+	 * Get the current pattern for this beat
+	 * @return
+	 */
 	public PatternShoot getPattern() {
 		String str = patterns.getPattern();
+		System.out.println(str);
 		
 		PatternShoot shoot = new PatternShoot();
 		
@@ -69,10 +85,17 @@ public class Level {
 	}
 	
 	/**
-	 * Get's current tempo
+	 * Get's the current tempo
 	 * @return
 	 */
 	public int getTempo() {
+		if(end()) {
+			if(tempos.size() > 0)
+				return tempos.get(tempos.size()-1).tempo;
+			else
+				return DEFAULT_TEMPO;
+		}
+			
 		return tempos.get(current_position).tempo;
 	}
 	
@@ -109,6 +132,8 @@ public class Level {
 				
 				// Ran out of lines
 				if(line == null) {
+					newStep.pattern = current_pattern;
+					newStep.tempo = current_tempo;
 					tempos.add(newStep);
 					break;
 				}
@@ -118,10 +143,12 @@ public class Level {
 				// Empty line means the end of tempo step
 				// Also . ends the step
 				if(line.isEmpty() || line.charAt(0) == '.') {
-					// Add this to the list
+					// Add this to the list, set current settings
+					newStep.pattern = current_pattern;
+					newStep.tempo = current_tempo;
 					tempos.add(newStep);
 					
-					// Create new tempo step
+					// Create a new tempo step
 					newStep = new TempoStep();
 					
 					continue;
@@ -148,10 +175,6 @@ public class Level {
 				else if(line.charAt(0) == '#') { // new pattern
 					current_pattern = Integer.parseInt(line.substring(1));
 				}
-				
-				// Set the basic info on this tempo
-				newStep.pattern = current_pattern;
-				newStep.tempo = current_tempo;
 			}
 			
 			bf.close();
