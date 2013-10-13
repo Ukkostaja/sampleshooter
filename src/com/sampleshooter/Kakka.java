@@ -6,6 +6,7 @@ public class Kakka {
 	int vari;
 	Vector2 suunta;
 	Vector2 sijainti;
+	int death = 0;
 
 	Kakka(int vari, Vector2 sijainti){
 		switch (vari) {
@@ -25,7 +26,7 @@ public class Kakka {
 			break;
 		}
 		this.sijainti = new Vector2(sijainti);
-		Sound.koeaani.play();
+		
 	}
 
 	void muutaSuunta(Vector2 uusiSuunta) {
@@ -35,5 +36,8 @@ public class Kakka {
 	public void update() {
 		this.sijainti.add(suunta);
 
+	}
+	public void die(){
+		this.death = 1;
 	}
 }

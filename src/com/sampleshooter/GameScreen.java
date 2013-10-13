@@ -13,7 +13,7 @@ import com.badlogic.gdx.Gdx;
 public class GameScreen extends Screen {
 	int home_line = Game.GAME_WIDTH* 3 / 4;
 	public final Vector2 homepoint = new Vector2(home_line,Game.GAME_HEIGHT/2);
-	int lineheight = Game.GAME_HEIGHT / (Player.maxpositions+1);
+	int lineheight = Game.GAME_HEIGHT / (Player.maxpositions+2);
 	int[] lanes = new int[Player.maxpositions+2];
 
 	@Override
@@ -44,16 +44,22 @@ public class GameScreen extends Screen {
 	}
 
 	public void drawPommit(ArrayList<Pommi> pommit) {
-		for(int i = 0;i<pommit.size();i++){
+		for(int i = 0;i<pommit.size();i++) if (pommit.get(i).death <= 0){
 			Pommi pommi = pommit.get(i);
+			
+			float seizurePosX = 0.0f;
+			if (pommi.rushCounter > 0) {
+				seizurePosX = (float)Math.random() * 16.0f - 8.0f;
+			}
+			
 			switch (pommi.tyyppi) {
 			case 0:	
-				draw(Art.note_full[0][0],(int)pommi.sijainti.x,(int)pommi.sijainti.y);
+				draw(Art.note_full[0][0],(int)pommi.sijainti.x + (int)seizurePosX,(int)pommi.sijainti.y);
 				break;
 			case 1:
-				draw(Art.note_perus[0][0],(int)pommi.sijainti.x,(int)pommi.sijainti.y);
+				draw(Art.note_perus[0][0],(int)pommi.sijainti.x - 64 + (int)seizurePosX,(int)pommi.sijainti.y);
 			default:
-				draw(Art.ball[0][0],(int)pommi.sijainti.x,(int)pommi.sijainti.y);
+				draw(Art.ball[0][0],(int)pommi.sijainti.x + (int)seizurePosX,(int)pommi.sijainti.y);
 				break;
 			}
 			;
@@ -67,11 +73,23 @@ public class GameScreen extends Screen {
 	}
 
 	public void drawKakat(ArrayList<Kakka> kakat){
-		for(int i = 0;i<kakat.size();i++){
+		for(int i = 0;i<kakat.size();i++) {
 			draw(Art.kuula[0][0],(int)kakat.get(i).sijainti.x,(int)kakat.get(i).sijainti.y);
 		}
 	}
+	
+	public void drawLuodit(ArrayList<Luoti> luodit){
+		for(int i = 0;i<luodit.size();i++) if (luodit.get(i).death <= 0){
+			draw(Art.kuula[0][0],(int)luodit.get(i).piste.x,(int)luodit.get(i).piste.y + 16);
+		}
+	}	
 
+	public void drawMaalit(ArrayList<TargetArea> maalit){
+		for(int i = 0; i< maalit.size();i++) {
+			draw(Art.target[0][0],(int)maalit.get(i).sijainti.x,(int)maalit.get(i).sijainti.y);
+		}
+	}
+	
 	@Override
 	public void init(Game game) {
 		// TODO Auto-generated method stub

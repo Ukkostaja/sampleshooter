@@ -98,3 +98,4 @@ public class Patterns {
 	
 	private String EMPTY_PATTERN = "000";
 }
+

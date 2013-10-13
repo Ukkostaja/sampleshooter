@@ -182,14 +182,41 @@ public class Level {
 			e.printStackTrace();
 			tempos.clear();
 		}
+		
+		// Set the first pattern in effect
+		setCurrentPattern();
+	}
+	
+	/**
+	 * Sets the beat pattern
+	 */
+	private void setCurrentPattern() {
+		// Do nothing if this is the first beat
+		// or level has ended
+		if(current_position == 0 || end())
+			return;
+		
+		// Get current pattern information
+		TempoStep current = tempos.get(current_position);
+		TempoStep last = tempos.get(current_position-1);
+		
+		// If current does not exist this does not matter
+		if(current != null) {
+			// Change pattern if differs from last or not set at all
+			if(last.pattern != current.pattern)
+				patterns.set(current.pattern);
+		}
 	}
 	
 	/**
 	 * Step the level by one
 	 */
 	public void step() {
+		// Advance both notes and balls
 		current_position++;
 		patterns.step();
+		
+		setCurrentPattern();
 	}
 	
 	private int current_position = 0;

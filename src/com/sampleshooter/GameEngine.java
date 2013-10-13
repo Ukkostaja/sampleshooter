@@ -2,8 +2,10 @@ package com.sampleshooter;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Vector;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Main game engine
@@ -23,6 +25,11 @@ public class GameEngine extends Engine {
 		input.setEngine(this);
 		
 		isRunning = true;
+		int targetHeight = Game.GAME_HEIGHT /3;
+		int targetFix = Game.GAME_HEIGHT /7;
+		for(int i = 0;i< 3;i++) {
+			maalit.add(new TargetArea((Game.GAME_WIDTH - screen.home_line )*2 /3 + screen.home_line,targetFix+i* targetHeight));
+		}
 	}
 	
 	/**
@@ -33,7 +40,8 @@ public class GameEngine extends Engine {
 		player.setPositio(rawinput);
 		
 		if(rawinput == 0)
-			balls.add(new Kakka(rdom.nextInt(3)-1,screen.homepoint));
+		 	luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-8, 0)));
+
 	}
 	
 	/**
@@ -42,17 +50,16 @@ public class GameEngine extends Engine {
 	protected void draw() {
 		screen.startOfDraw();
 		//------------------------------
+		screen.drawLines(lines.getLines());
+		screen.drawMaalit(maalit);
 		screen.drawPelaaja(player);
 		screen.drawKakat(balls);
 		screen.drawPommit(pommit);
-		screen.drawLines(lines.getLines());
+		screen.drawLuodit(luodit);
 		//------------------------------
 		screen.endOfDraw();
 	}
 	
-	/**
-	 * Returns the screen where the engine draws
-	 */
 	public Screen getScreen() {
 		return screen;
 	}
@@ -64,6 +71,86 @@ public class GameEngine extends Engine {
 	{
 		level = new Level("../sampleshooter/assets/", "level" + lvl + ".txt");
 		level_number = lvl;
+		
+		//nextTempo = level.getTempoDelay(); // TODO: ?
+	}
+	
+	/*
+	public void spawn(Vector<Level.Note> notes) {
+		
+		for (int i=0;i<notes.size();i++) {
+			
+			if (notes.get(i) != null) {
+				
+				Level.Note note = notes.get(i);
+				
+				int noteType = (int)(note.note - 'A'); // 1; // FIXME!! Change this to take value from the note-type
+				int notePos = screen.lanes[note.position];
+				
+				pommit.add(new Pommi(50, notePos, noteType));
+				
+			}
+			
+		}
+		
+>>>>>>> refs/remotes/origin/sec
+	}*/
+
+	void checkPress(int key) {
+		switch (key) {
+		case 20: // alas
+			luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-8, 0)));
+			break;
+		case 21: //vasen
+			player.setPositio(1);
+			break;
+		case 22: //oikea
+			player.setPositio(-1);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	int checkCollision(Pommi pommi, ArrayList<Luoti> luodit) {
+		
+		if (pommi.death > 0) return -1;
+		
+		// check luoti collisions
+		for (int i=0;i<luodit.size();i++) if (luodit.get(i).death <= 0) {
+			
+			float xDist = pommi.sijainti.x - luodit.get(i).piste.x;
+			float yDist = pommi.sijainti.y - luodit.get(i).piste.y;
+			
+			if (Math.abs(xDist) < horBulletColRange) {
+				
+				if (Math.abs(yDist) < verBulletColRange) {
+					
+					pommi.collide();
+					luodit.get(i).collide();
+					
+				}
+				
+			}
+		
+		}
+		
+		// check player collision
+		float xDist = pommi.sijainti.x - screen.home_line;
+		float yDist = pommi.sijainti.y - screen.lanes[player.ship_positio];
+		
+		if (Math.abs(xDist) < horPlayerColRange) {
+			
+			if (Math.abs(yDist) < verPlayerColRange) {
+				
+				player.collide();
+				pommi.collide();
+				
+			}
+		}
+		
+		
+		return 0;
 	}
 	
 	/**
@@ -81,21 +168,25 @@ public class GameEngine extends Engine {
 			balls.add(new Kakka(-1,screen.homepoint));
 	}
 	
+	
+	
 	/**
 	 * Quick hack for note spawning
 	 */
-	private void spawnNote(Level.Note note) {		
+	private void spawnNotes(Vector<Level.Note> notes) {		
 		// TODO: FIX!
-		if(note.note == 'A')
-			pommit.add(new Pommi(50, screen.lanes[note.position],0));
-		else if(note.note == 'B')
-			pommit.add(new Pommi(50, screen.lanes[note.position],1));
-		else if(note.note == 'C')
-			pommit.add(new Pommi(50, screen.lanes[note.position],0));
-		else if(note.note == 'D')
-			pommit.add(new Pommi(50, screen.lanes[note.position],1));
-		else if(note.note == 'E')
-			pommit.add(new Pommi(50, screen.lanes[note.position],0));
+		for(Level.Note note : notes) {
+			if(note.note == 'A')
+				pommit.add(new Pommi(50, screen.lanes[note.position],0));
+			else if(note.note == 'B')
+				pommit.add(new Pommi(50, screen.lanes[note.position],1));
+			else if(note.note == 'C')
+				pommit.add(new Pommi(50, screen.lanes[note.position],0));
+			else if(note.note == 'D')
+				pommit.add(new Pommi(50, screen.lanes[note.position],1));
+			else if(note.note == 'E')
+				pommit.add(new Pommi(50, screen.lanes[note.position],0));
+		}
 	}
 	
 	/**
@@ -117,10 +208,7 @@ public class GameEngine extends Engine {
 			// Spawn under
 			spawn(level.getPattern());
 			
-			// Spawn notes
-			for(Level.Note note : level.getNotes()) {
-				spawnNote(note);
-			}
+			spawnNotes(level.getNotes());
 			
 			// Play sound
 			
@@ -129,13 +217,20 @@ public class GameEngine extends Engine {
 				isRunning = false;
 		}
 		
+	
 		for (Kakka kk : balls) {
 			kk.update();
 		}
 		
 		for (Pommi pom : pommit) {
 			pom.update();
+			
+			checkCollision(pom, luodit);
 		}
+		
+		for (Luoti luoti : luodit) {
+			luoti.update();
+		}	
 		
 		tempoSignal = false; // Set next step as no tempo
 	}
@@ -145,12 +240,21 @@ public class GameEngine extends Engine {
 	private Input input = new Input();
 	private int level_number = 1;
 	
+	// TODO: 
+	private int bullet_start = 30;
+	private int verBulletColRange = 10;
+	private int horBulletColRange = 48;
+	private int verPlayerColRange = 45;
+	private int horPlayerColRange = 64;
+	
 	// Game objects
 	private Level level;
 	private Lines lines = new Lines();
 	private Player player = new Player();
 	private ArrayList<Kakka> balls = new ArrayList<Kakka>();
 	public ArrayList<Pommi> pommit = new ArrayList<Pommi>();	// TODO: CHANGE TO PRIVATE!
+	private ArrayList<Luoti> luodit = new ArrayList<Luoti>();
+	private ArrayList<TargetArea> maalit = new ArrayList<TargetArea>();
 	
 	// Level objects
 	private int position = -1;		// current level tempo position
