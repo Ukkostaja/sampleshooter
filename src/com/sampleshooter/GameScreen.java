@@ -16,9 +16,8 @@ public class GameScreen extends Screen {
 	int lineheight = Game.GAME_HEIGHT / (Player.maxpositions+2);
 	int[] lanes = new int[Player.maxpositions+2];
 	
-	//public final Vector2 homepoint = new Vector2(home_line,Game.GAME_HEIGHT/2);
-	public Vector2 homepoint;
-
+	public final Vector2 homepoint = new Vector2(home_line, lineheight*(Player.maxpositions/2 + 1));
+	
 	@Override
 	public void render()
 	{
@@ -106,8 +105,6 @@ public class GameScreen extends Screen {
 		for(int i=1;i<Player.maxpositions+2;i++) {
 			lanes[i] = lineheight*i;
 		}
-		
-		homepoint = new Vector2(home_line,lanes[(Player.maxpositions+2)/2]);
 	}
 
 	@Override
