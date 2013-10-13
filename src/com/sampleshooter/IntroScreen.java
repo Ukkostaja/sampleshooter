@@ -24,11 +24,12 @@ public class IntroScreen extends Screen {
 	
 	@Override
 	public void init(Game game) {
+		Sound.intro.play();
 		
 	}
 
 	@Override
 	public void removed() {
-		
+		Sound.intro.stop();
 	}
 }

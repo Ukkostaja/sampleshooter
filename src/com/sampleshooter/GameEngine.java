@@ -42,7 +42,7 @@ public class GameEngine extends Engine {
 		player.setPositio(rawinput);
 		
 		if(rawinput == 0)
-		 	luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-8, 0)));
+		 	luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-40, 0)));
 	}
 	
 	/**
@@ -80,19 +80,16 @@ public class GameEngine extends Engine {
 		case 20: // alas
 			if(maalit.get(1).check(balls)) {
 				luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-40, 0)));
-				Sound.shoot.play();
 			}
 			break;
 		case 21: //vasen
 			if(maalit.get(2).check(balls)) {
 				player.setPositio(1);
-				Sound.strafe.play();
 			}
 			break;
 		case 22: //oikea
 			if(maalit.get(0).check(balls)) {
 				player.setPositio(-1);
-				Sound.strafe.play();
 			}
 		default:
 			break;
