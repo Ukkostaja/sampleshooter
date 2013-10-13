@@ -15,6 +15,7 @@ public class Art {
 	public static TextureRegion[][] line;
 	public static TextureRegion[][] note_full;
 	public static TextureRegion[][] kuula;
+	public static TextureRegion[][] luoti;
 	public static TextureRegion[][] note_perus;
 	public static TextureRegion[][] target;
 
@@ -29,6 +30,7 @@ public class Art {
 		note_full = split("../sampleshooter/assets/Nuotti_koko.png",64,64);
 		note_perus = split("../sampleshooter/assets/Nuotti_perus.png",128,64);
 		kuula = split("../sampleshooter/assets/kuula.png",32,32);
+		luoti = split("../sampleshooter/assets/luoti.png",64,32);
 		intro = load("../sampleshooter/assets/StartupScreen_crop.png",1024,512);
 		target = split("../sampleshooter/assets/ympyrasulkeutuu.png",64,64);
 	}

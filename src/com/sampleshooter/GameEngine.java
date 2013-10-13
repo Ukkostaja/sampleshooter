@@ -190,6 +190,7 @@ public class GameEngine extends Engine {
 			spawnNotes(level.getNotes());
 			
 			// Play sound
+			Sound.pulse.play();
 			
 			// Check for a game ending condition
 			if(level.end())
