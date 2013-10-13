@@ -73,7 +73,6 @@ public class Level {
 	 */
 	public PatternShoot getPattern() {
 		String str = patterns.getPattern();
-		System.out.println(str);
 		
 		PatternShoot shoot = new PatternShoot();
 		

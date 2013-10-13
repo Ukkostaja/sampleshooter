@@ -68,27 +68,6 @@ public class GameEngine extends Engine {
 		
 		//nextTempo = level.getTempoDelay(); // TODO: ?
 	}
-	
-	/*
-	public void spawn(Vector<Level.Note> notes) {
-		
-		for (int i=0;i<notes.size();i++) {
-			
-			if (notes.get(i) != null) {
-				
-				Level.Note note = notes.get(i);
-				
-				int noteType = (int)(note.note - 'A'); // 1; // FIXME!! Change this to take value from the note-type
-				int notePos = screen.lanes[note.position];
-				
-				pommit.add(new Pommi(50, notePos, noteType));
-				
-			}
-			
-		}
-		
->>>>>>> refs/remotes/origin/sec
-	}*/
 
 	int checkCollision(Pommi pommi, ArrayList<Luoti> luodit) {
 		
