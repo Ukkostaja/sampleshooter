@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class Luoti {
-
+	
 	Vector2 piste;
 	Vector2 suunta;
 	int animatemode= 0; //0 = ei animoi, 1 = looppaa kerran, 2= looppaa kokoajan.
@@ -22,12 +22,12 @@ public class Luoti {
 	public void  update() {
 		piste.add(suunta);
 		if(animatemode !=0){
-
+			
 		}
-
+		
 		// death effects - delete object or what?
 		if (death > 0) {
-
+			
 		}		
 
 	}
@@ -37,20 +37,20 @@ public class Luoti {
 		this.suunta=suunta;
 		death = 0;
 	}
-
+	
 	void collide() {
-
+	
 		// effects go here
 		die();
-
+		
 	}
-
+	
 	void die() {
-
+		
 		death = 1;
-
+		
 	}
-
-
-
+	
+	
+	
 }

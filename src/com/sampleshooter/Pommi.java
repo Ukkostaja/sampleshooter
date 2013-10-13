@@ -9,7 +9,7 @@ public class Pommi {
 	Vector2 nopeus =new Vector2(32,0); // 2,0
 	static final int rushPosX = 440;
 	Random rdom;
-
+	
 	int tyyppi;
 	int death;
 	int moveTick = 0;
@@ -21,7 +21,7 @@ public class Pommi {
 		rdom = new Random();
 		// dirty override! >:D
 		x = 72;
-
+		
 		sijainti = new Vector2(x*1.0f, y*1.0F);
 		this.tyyppi = tyyppi;
 		death = 0;
@@ -33,68 +33,68 @@ public class Pommi {
 	}
 
 	void update() {
-
+		
 		moveTick++;
-
+		
 		if (moveTick >= moveSpeed) {
-
+		
 			moveTick -= moveSpeed;
 			sijainti.add(nopeus);
-
+			
 		}
-
+		
 		if (sijainti.x >= rushPosX && rushCounter == -1) {
-
+			
 			rushCounter = 110;
 		}
 		else if (rushCounter > 0) {
-
+			
 			moveTick = 0; // freeze movement
-
+			
 			rushCounter--;
 			if (rushCounter <= 0) {
-
+				
 				moveSpeed = 1;
-
+				
 			}
-
+			
 		}
 		// die at end of the screen?
-
+		
 		// death effects - delete object or what?
 		if (death > 0) {
-
+			
 		}
-
+		
 	}
-
+	
 	void collide() {
-
+		
 		// effects go here
-
+		
 		if( death == 0 ) playHitSound();
-
+		
 		die();
-
+		
 	}
-
+	
 	void die() {
-
+		
 		death = 1;
-
+		
 	}
-
+	
 	void playHitSound() {
-
+		
 		// play hit sound based on the position
-
+		
 		int altitude = ((int)this.sijainti.x - 50) / 32;
 		altitude -= 1;
-
+		
 		if (altitude < 1) {
 			altitude = 1;
 		}
-
+		
 		if (altitude > 11) {
 			altitude = 11;
 		}
@@ -110,8 +110,8 @@ public class Pommi {
 			break;
 		}
 		// System.out.println("Tone: " + altitude);
-
-
+		
+		
 	}
 
 

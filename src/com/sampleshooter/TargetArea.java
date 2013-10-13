@@ -3,7 +3,9 @@ package com.sampleshooter;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 
 public class TargetArea {
@@ -18,11 +20,18 @@ public class TargetArea {
 	}
 			
 	
+	private boolean inHitbox(Vector2 piste) {
+		return com.badlogic.gdx.math.Intersector.isPointInTriangle(piste, sijainti,
+				(new Vector2(sijainti)).add(new Vector2(0, 64)),(new Vector2(sijainti)).add(new Vector2(64, 0)));
+	}
+	
 	public boolean check(ArrayList<Kakka> kuulat){
 		for(Kakka kk : kuulat) {
-			
+			if(this.inHitbox(kk.sijainti)) {
+				kk.die();
+				return true;
+			}
 		}
-		
 		return false;
 	}
 		

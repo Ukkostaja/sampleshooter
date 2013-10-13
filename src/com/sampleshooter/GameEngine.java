@@ -74,23 +74,52 @@ public class GameEngine extends Engine {
 		
 		//nextTempo = level.getTempoDelay(); // TODO: ?
 	}
+	
+	/*
+	public void spawn(Vector<Level.Note> notes) {
+		
+		for (int i=0;i<notes.size();i++) {
+			
+			if (notes.get(i) != null) {
+				
+				Level.Note note = notes.get(i);
+				
+				int noteType = (int)(note.note - 'A'); // 1; // FIXME!! Change this to take value from the note-type
+				int notePos = screen.lanes[note.position];
+				
+				pommit.add(new Pommi(50, notePos, noteType));
+				
+			}
+			
+		}
+		
+>>>>>>> refs/remotes/origin/sec
+	}*/
 
+	
+	
 	void checkPress(int key) {
 		switch (key) {
+		
 		case 20: // alas
-			luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-8, 0)));
+			if(maalit.get(1).check(balls)) {
+				luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-40, 0)));
+			}
 			break;
 		case 21: //vasen
-			player.setPositio(1);
+			if(maalit.get(2).check(balls)) {
+				player.setPositio(1);
+			}
 			break;
 		case 22: //oikea
-			player.setPositio(-1);
-			break;
+			if(maalit.get(0).check(balls)) {
+				player.setPositio(-1);
+			}
 		default:
 			break;
 		}
 	}
-
+	
 	int checkCollision(Pommi pommi, ArrayList<Luoti> luodit) {
 		
 		if (pommi.death > 0) return -1;
