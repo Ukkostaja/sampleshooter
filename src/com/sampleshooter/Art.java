@@ -11,7 +11,7 @@ public class Art {
 	public static TextureRegion[][] player;
 	public static TextureRegion[][] ball;
 	public static TextureRegion[][] bomb;
-	public static TextureRegion intro;
+	public static Texture intro;
 	public static TextureRegion[][] line;
 	public static TextureRegion[][] note_full;
 	public static TextureRegion[][] kuula;
@@ -28,7 +28,7 @@ public class Art {
 		note_full = split("../sampleshooter/assets/Nuotti_koko.png",64,64);
 		note_perus= split("../sampleshooter/assets/Nuotti_perus.png",128,64);
 		kuula = split("../sampleshooter/assets/kuula.png",32,32);
-		intro = load("../sampleshooter/assets/StartupScreen_crop.png",512,1024);
+		intro = new Texture(Gdx.files.internal("../sampleshooter/assets/StartupScreen_crop.png"));
 	}
 	
 	public static TextureRegion load (String name, int width, int height) {

@@ -11,7 +11,7 @@ public class IntroScreen extends Screen {
 	public void render()
 	{
 		spriteBatch.begin();
-		spriteBatch.draw(Art.intro, 200, 200);
+		spriteBatch.draw(Art.intro, 0, 0);
 		spriteBatch.end();
 	}
 	
