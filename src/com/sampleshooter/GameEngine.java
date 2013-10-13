@@ -25,11 +25,13 @@ public class GameEngine extends Engine {
 		input.setEngine(this);
 		
 		isRunning = true;
-		int targetHeight = Game.GAME_HEIGHT /3;
-		int targetFix = Game.GAME_HEIGHT /7;
-		for(int i = 0;i< 3;i++) {
-			maalit.add(new TargetArea((Game.GAME_WIDTH - screen.home_line )*2 /3 + screen.home_line,targetFix+i* targetHeight,i));
-		}
+		
+		int maalix = (Game.GAME_WIDTH - screen.home_line )*2 /3 + screen.home_line;
+		
+		maalit.clear();
+		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y + (screen.homepoint.x - maalix) - 15)));
+		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y - 10)));
+		maalit.add(new TargetArea(new Vector2(maalix, screen.homepoint.y - (screen.homepoint.x - maalix) + 10)));
 	}
 	
 	/**
@@ -41,7 +43,6 @@ public class GameEngine extends Engine {
 		
 		if(rawinput == 0)
 		 	luodit.add(new Luoti(new Vector2(screen.home_line - this.bullet_start, screen.lanes[player.ship_positio]), new Vector2(-8, 0)));
-
 	}
 	
 	/**
@@ -71,32 +72,7 @@ public class GameEngine extends Engine {
 	{
 		level = new Level("../sampleshooter/assets/", "level" + lvl + ".txt");
 		level_number = lvl;
-		
-		//nextTempo = level.getTempoDelay(); // TODO: ?
 	}
-	
-	/*
-	public void spawn(Vector<Level.Note> notes) {
-		
-		for (int i=0;i<notes.size();i++) {
-			
-			if (notes.get(i) != null) {
-				
-				Level.Note note = notes.get(i);
-				
-				int noteType = (int)(note.note - 'A'); // 1; // FIXME!! Change this to take value from the note-type
-				int notePos = screen.lanes[note.position];
-				
-				pommit.add(new Pommi(50, notePos, noteType));
-				
-			}
-			
-		}
-		
->>>>>>> refs/remotes/origin/sec
-	}*/
-
-	
 	
 	void checkPress(int key) {
 		switch (key) {
