@@ -34,6 +34,7 @@ public class TargetArea {
 		for(Kakka kk : kuulat) {
 			if(this.inHitbox(kk.sijainti)) {
 				kk.die();
+				busy = false;
 				return true;
 			}
 		}
@@ -45,5 +46,6 @@ public class TargetArea {
 	
 	public TargetArea(int x, int y,int type){
 		this.sijainti = new Vector2(x,y);
+		this.type = type;
 	}
 }
