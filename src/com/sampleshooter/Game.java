@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.GL10;
 import com.sampleshooter.Screen;
 
 /**
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/master
  * Main Game class
  * @author Petri Partanen
  */

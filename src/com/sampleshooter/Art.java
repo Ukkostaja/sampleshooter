@@ -11,16 +11,16 @@ public class Art {
 	public static TextureRegion[][] player;
 	public static TextureRegion[][] ball;
 	public static TextureRegion[][] bomb;
-	public static TextureRegion intro;
 	public static TextureRegion[][] line;
 	public static TextureRegion[][] note_full;
 	public static TextureRegion[][] kuula;
+	public static TextureRegion intro;
 	public static TextureRegion[][] luoti;
 	public static TextureRegion[][] note_perus;
 	public static TextureRegion[][] target;
 
 	public static void load()
-	{		
+	{
 		// Pit‰‰ muuttaa suhteelliseksi assets directoriin androidilla. Ohje:
 		// http://code.google.com/p/libgdx/wiki/FileHandling
 		player = split("../sampleshooter/assets/player.png",64,64);
@@ -33,6 +33,7 @@ public class Art {
 		luoti = split("../sampleshooter/assets/luoti.png",64,32);
 		intro = load("../sampleshooter/assets/StartupScreen_crop.png",1024,512);
 		target = split("../sampleshooter/assets/ympyrasulkeutuu.png",64,64);
+
 	}
 	
 	public static TextureRegion load (String name, int width, int height) {

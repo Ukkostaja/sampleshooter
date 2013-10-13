@@ -76,10 +76,6 @@ public class GameScreen extends Screen {
 	}
 
 	public void drawKakat(ArrayList<Kakka> kakat){
-	/*	for(int i = 0;i<kakat.size();i++) {
-				draw(Art.kuula[0][0],(int)kakat.get(i).sijainti.x,(int)kakat.get(i).sijainti.y);
-		}*/
-		
 		for(Kakka kk : kakat) {
 			if(kk.sijainti.x > home_line + 60) {
 				draw(Art.kuula[0][0],(int)kk.sijainti.x,(int)kk.sijainti.y);
