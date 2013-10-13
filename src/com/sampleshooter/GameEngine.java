@@ -28,7 +28,7 @@ public class GameEngine extends Engine {
 		int targetHeight = Game.GAME_HEIGHT /3;
 		int targetFix = Game.GAME_HEIGHT /7;
 		for(int i = 0;i< 3;i++) {
-			maalit.add(new TargetArea((Game.GAME_WIDTH - screen.home_line )*2 /3 + screen.home_line,targetFix+i* targetHeight));
+			maalit.add(new TargetArea((Game.GAME_WIDTH - screen.home_line )*2 /3 + screen.home_line,targetFix+i* targetHeight,i));
 		}
 	}
 	
