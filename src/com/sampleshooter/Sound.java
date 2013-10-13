@@ -11,6 +11,8 @@ public class Sound {
 	private static int playingChord =0;
 	public static com.badlogic.gdx.audio.Sound koeaani;
 	public static com.badlogic.gdx.audio.Sound pulse;
+	public static com.badlogic.gdx.audio.Sound shoot;
+	public static com.badlogic.gdx.audio.Sound strafe;
 	public static com.badlogic.gdx.audio.Sound[] chimes;
 	public static com.badlogic.gdx.audio.Sound[] chords;
 	
@@ -19,7 +21,9 @@ public class Sound {
 		chimes = new com.badlogic.gdx.audio.Sound[nroChimes];
 		chords = new com.badlogic.gdx.audio.Sound[nroChords];
 		pulse = load("../sampleshooter/assets/Pulse.wav");
-		koeaani= load("../sampleshooter/assets/hroot_plunk.wav"); 
+		koeaani= load("../sampleshooter/assets/hroot_plunk.wav");
+		strafe = load("../sampleshooter/assets/Drum_strafe.wav");
+		shoot= load("../sampleshooter/assets/Drum_shoot.wav"); 
 		for(int i=1 ;i < nroChimes;i++) {
 			chimes[nroChimes-i] = load("../sampleshooter/assets/Chime_"+i+".wav");
 		}
