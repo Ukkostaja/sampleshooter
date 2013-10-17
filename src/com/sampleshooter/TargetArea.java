@@ -28,10 +28,10 @@ public class TargetArea {
 				(new Vector2(sijainti)).add(new Vector2(0, 64)),(new Vector2(sijainti)).add(new Vector2(64, 0)));
 	}
 	
-	public boolean check(ArrayList<Kakka> kuulat){
+	public boolean check(ArrayList<Stones> kuulat){
 		if (busy) return false;
 		busy = true;
-		for(Kakka kk : kuulat) {
+		for(Stones kk : kuulat) {
 			if(this.inHitbox(kk.sijainti)) {
 				kk.die();
 				busy = false;

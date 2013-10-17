@@ -19,18 +19,18 @@ public class Sound {
 	
 	public static void load() 
 	{
-		strafe = load("../sampleshooter/assets/Drum_strafe.wav");
-		shoot = load("../sampleshooter/assets/Drum_shoot.wav");
-		intro = load("../sampleshooter/assets/title.wav");
+		strafe = load(Art.path +"Drum_strafe.wav");
+		shoot = load(Art.path +"Drum_shoot.wav");
+		intro = load(Art.path +"Title.wav");
 		chimes = new com.badlogic.gdx.audio.Sound[nroChimes];
 		chords = new com.badlogic.gdx.audio.Sound[nroChords];
-		pulse = load("../sampleshooter/assets/Pulse.wav");
-		koeaani= load("../sampleshooter/assets/hroot_plunk.wav"); 
+		pulse = load(Art.path +"Pulse.wav");
+		//koeaani= load(Art.path +"hroot_plunk.wav"); 
 		for(int i=1 ;i < nroChimes;i++) {
-			chimes[nroChimes-i] = load("../sampleshooter/assets/Chime_"+i+".wav");
+			chimes[nroChimes-i] = load(Art.path +"Chime_"+i+".wav");
 		}
 		for(int i=1;i < nroChords;i++) {
-			chords[nroChords-i] = load("../sampleshooter/assets/Chord_"+i+".wav");
+			chords[nroChords-i] = load(Art.path +"Chord_"+i+".wav");
 		}
 	}
 	

@@ -6,19 +6,39 @@ import com.badlogic.gdx.Gdx;
  * @author Petri Partanen
 */
 public class MenuEngine extends Engine {
-	public MenuEngine() {
+	private CreditScreen cScreen = new CreditScreen();
+	private IntroInput iInput = new IntroInput();
+	Screen myScreen;
+	public MenuEngine(int status) {
+		isRunning = true;
+	
+		switch (status) {
+		case 0:
+			myScreen = new IntroScreen();
+			
+			break;
+		case 3:
+			myScreen = new CreditScreen();
+			
+			break;
+		default:
+			isRunning = false;
+			break;
+		}
+
+		
 		// set input
 		Gdx.input.setInputProcessor(iInput);
 		
-		isRunning = true;
+		
 	}
 	
 	protected void draw() {
-		iScreen.render();
+		myScreen.render();
 	}
 	
 	public Screen getScreen() {
-		return iScreen;
+		return myScreen;
 	}
 	
 	protected void step(float delta) {
@@ -27,7 +47,5 @@ public class MenuEngine extends Engine {
 		}
 	}
 	
-	private IntroScreen iScreen = new IntroScreen();
-	
-	private IntroInput iInput = new IntroInput();
+
 }

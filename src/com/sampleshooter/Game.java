@@ -10,6 +10,13 @@ import com.sampleshooter.Screen;
  * @author Petri Partanen
  */
 class Game implements ApplicationListener {	
+	// Game status
+	// 0 = Intro
+	// 1 = Level menu
+	// 2 = Game
+	// 3 = Game Over
+	private int status = 0;
+	
 	/**
 	 * 
 	 */
@@ -18,15 +25,15 @@ class Game implements ApplicationListener {
 		// Load General game stuff
 		Art.load();
 		Sound.load();
+		status = 0;
 
 		// Create the game engine
 		// We would create "MenuEngine" here if necessary
-		engine = new MenuEngine();
+		engine = new MenuEngine(status);
 		
 		// Get the engine's drawing screen and set it as current
 		setScreen(engine.getScreen());
 		
-		status = 0;
 
 		this.running = true;
 	}
@@ -56,9 +63,12 @@ class Game implements ApplicationListener {
 			// this is done by simply switching the engine and screen
 			if(!engine.isRunning()) {
 				if(status == 0) {
-					status = 1;
+					status = 2;
 					engine = new GameEngine(1);
 					setScreen(engine.getScreen());
+				} else if(status ==2) {
+					status = 3;
+					engine = new MenuEngine(status);
 				}
 				else
 					System.exit(0);
@@ -104,12 +114,7 @@ class Game implements ApplicationListener {
 	// Screen on which to draw
 	private Screen screen;
 	
-	// Game status
-	// 0 = Intro
-	// 1 = Level menu
-	// 2 = Game
-	// 3 = Game Over
-	private int status = 0;
+
 
 	// Sets screen resolution for initialization
 	public static final int GAME_HEIGHT = 720;

@@ -1,6 +1,6 @@
 package com.sampleshooter;
 
-import java.lang.invoke.SwitchPoint;
+
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -68,14 +68,18 @@ public class GameScreen extends Screen {
 		}
 	}
 
-	public void drawLines(int[] viivat) {
+	public void drawLines(int[] viivat,boolean beat) {
 		for(int i = 0; i< viivat.length;i++){
+			if (beat) {
+				draw(Art.line[1][0],viivat[i],Game.GAME_HEIGHT / 7);
+			} else {
 			draw(Art.line[0][0],viivat[i],Game.GAME_HEIGHT / 7);
+			}
 		}
 	}
 
-	public void drawKakat(ArrayList<Kakka> kakat){
-		for(Kakka kk : kakat) {
+	public void drawKakat(ArrayList<Stones> kakat){
+		for(Stones kk : kakat) {
 			if(kk.sijainti.x > home_line + 60 && kk.death==0) {
 				draw(Art.kuula[0][0],(int)kk.sijainti.x,(int)kk.sijainti.y);
 			}

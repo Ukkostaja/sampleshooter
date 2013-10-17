@@ -12,6 +12,39 @@ import com.badlogic.gdx.math.Vector2;
  * @author Petri Partanen
  */
 public class GameEngine extends Engine {
+	// Main elements
+		public GameScreen screen = new GameScreen();	// TODO: CHANGE TO PRIVATE!!
+		private Input input = new Input();
+		private int level_number = 1;
+		
+		// TODO: 
+		private int bullet_start = 30;
+		private int verBulletColRange = 10;
+		private int horBulletColRange = 48;
+		private int verPlayerColRange = 45;
+		private int horPlayerColRange = 64;
+		
+		// Game objects
+		private Level level;
+		private Lines lines = new Lines();
+		private Player player = new Player();
+		private ArrayList<Stones> balls = new ArrayList<Stones>();
+		public ArrayList<Pommi> pommit = new ArrayList<Pommi>();	// TODO: CHANGE TO PRIVATE!
+		private ArrayList<Luoti> luodit = new ArrayList<Luoti>();
+		private ArrayList<TargetArea> maalit = new ArrayList<TargetArea>();
+		
+		// Level objects
+		private int position = -1;		// current level tempo position
+		
+		boolean beatAtSecond = false;
+		
+		// Tempo object
+		float nextTempo = 0.0f; // time for next tempo
+		boolean tempoSignal = false;
+		
+		private Random rdom = new Random();
+	
+	
 	/**
 	 * Creates game engine
 	 * @param lvl	Initial level number to play
@@ -51,7 +84,7 @@ public class GameEngine extends Engine {
 	protected void draw() {
 		screen.startOfDraw();
 		//------------------------------
-		screen.drawLines(lines.getLines());
+		screen.drawLines(lines.getLines(),beatAtSecond);
 		screen.drawMaalit(maalit);
 		screen.drawPelaaja(player);
 		screen.drawKakat(balls);
@@ -70,7 +103,7 @@ public class GameEngine extends Engine {
 	 */
 	protected void loadLevel(int lvl)
 	{
-		level = new Level("../sampleshooter/assets/", "level" + lvl + ".txt");
+		level = new Level(Art.path, "level" + lvl + ".txt");
 		level_number = lvl;
 	}
 	
@@ -146,13 +179,13 @@ public class GameEngine extends Engine {
 	 */
 	private void spawn(Level.PatternShoot sho) {
 		if(sho.left)
-			balls.add(new Kakka(1,screen.homepoint));
+			balls.add(new Stones(1,screen.homepoint));
 	
 		if(sho.center)
-			balls.add(new Kakka(0,screen.homepoint));
+			balls.add(new Stones(0,screen.homepoint));
 
 		if(sho.right)
-			balls.add(new Kakka(-1,screen.homepoint));
+			balls.add(new Stones(-1,screen.homepoint));
 	}
 	
 	
@@ -209,7 +242,7 @@ public class GameEngine extends Engine {
 		}
 		
 	
-		for (Kakka kk : balls) {
+		for (Stones kk : balls) {
 			kk.update();
 		}
 		
@@ -226,35 +259,5 @@ public class GameEngine extends Engine {
 		tempoSignal = false; // Set next step as no tempo
 	}
 	
-	// Main elements
-	public GameScreen screen = new GameScreen();	// TODO: CHANGE TO PRIVATE!!
-	private Input input = new Input();
-	private int level_number = 1;
 	
-	// TODO: 
-	private int bullet_start = 30;
-	private int verBulletColRange = 10;
-	private int horBulletColRange = 48;
-	private int verPlayerColRange = 45;
-	private int horPlayerColRange = 64;
-	
-	// Game objects
-	private Level level;
-	private Lines lines = new Lines();
-	private Player player = new Player();
-	private ArrayList<Kakka> balls = new ArrayList<Kakka>();
-	public ArrayList<Pommi> pommit = new ArrayList<Pommi>();	// TODO: CHANGE TO PRIVATE!
-	private ArrayList<Luoti> luodit = new ArrayList<Luoti>();
-	private ArrayList<TargetArea> maalit = new ArrayList<TargetArea>();
-	
-	// Level objects
-	private int position = -1;		// current level tempo position
-	
-	boolean beatAtSecond = false;
-	
-	// Tempo object
-	float nextTempo = 0.0f; // time for next tempo
-	boolean tempoSignal = false;
-	
-	private Random rdom = new Random();
 }
